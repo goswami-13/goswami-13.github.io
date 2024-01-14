@@ -30,3 +30,5 @@ Currently pursuing a Ph.D. in the Department of Mechanical Engineering at the Un
 - Expertise in utilizing Python libraries and frameworks such as NumPy, Pandas, Matplotlib, and TensorFlow, to extract and interpret high-fidelty CFD data.
 - Integrated Python with OpenFOAM (C++ based) to ease data analysis.
 - Adept in OpenFOAM and NEK5000 simulation framework.
+
+You can download a PDF copy of my CV [here](/files/CV_Shubham.pdf).
