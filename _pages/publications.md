@@ -5,12 +5,33 @@ permalink: /publications/
 author_profile: true
 ---
 
-{% if author.googlescholar %}
-  You can also find my articles on <u><a href="{{author.googlescholar}}">my Google Scholar profile</a>.</u>
-{% endif %}
+## Peer-reviewed journal papers:
+* **Goswami, S.**, & Hemmati, A. (2023). Mean wake evolution behind low aspect-ratio wall-mounted finite prisms. International Journal of Heat and Fluid Flow, 104, 109237. ([Link](https://doi.org/10.1016/j.ijheatfluidflow.2023.109237))
 
-{% include base_path %}
+* **Goswami, S.**, & Hemmati, A. (2022). Mechanisms of wake asymmetry and secondary structures behind low aspect-ratio wall-mounted prisms. Journal of Fluid Mechanics, 950, A31. ([Link](https://doi.org/10.1017/jfm.2022.824))
 
-{% for post in site.publications reversed %}
-  {% include archive-single.html %}
-{% endfor %}
+* Zargar, A., **Goswami, S.**, & Hemmati, A. (2022). On the wake of a large depth ratio wall-mounted prism at a normal incident angle. Journal of Wind Engineering and Industrial Aerodynamics, 230, 105168. ([Link](https://doi.org/10.1016/j.jweia.2022.105168))
+
+* **Goswami, S.**, & Hemmati, A. (2021). Response of viscoelastic turbulent pipeflow past square bar roughness: the effect on mean flow. Computation, 9(8), 85. ([Link](https://doi.org/10.3390/computation9080085))
+
+* **Goswami, S.**, & Hemmati, A. (2021). Evolution of turbulent pipe flow recovery over a square bar roughness element at a range of Reynolds numbers. Physics of Fluids, 33(3). ([Link](https://doi.org/10.1063/5.0037732))
+
+* **Goswami, S.**, & Hemmati, A. (2020). Response of turbulent pipeflow to multiple square bar roughness elements at high Reynolds number. Physics of Fluids, 32(7). ([Link](https://doi.org/10.1063/5.0014832))
+
+## Technical presentations & workshops (refereed abstract & oral presentation):
+
+* **Goswami, S.**, Hemmati A. (2023). The mechanism of unsteady wake transition behind large depth-ratio wall-mounted prisms. 76th Annual Meeting of the American Physics Society (APS) Division of Fluid Dynamics, Washington, DC, USA.
+
+* **Goswami, S.**, Hemmati A. (2022). Mean wake transitions of wall mounted long prisms at low Reynolds numbers. 75th Annual Meeting of the American Physics Society (APS) Division of Fluid Dynamics, Indianapolis, IN, USA.
+
+* **Goswami, S.**, Hemmati A. (2022). Secondary structures in the axisymmetric wake behind of low aspect-ratio wall-mounted prisms, 14th European Fluid Mechanics Conference, Athens, Greece.
+
+* **Goswami, S.**, Hemmati, A. (2022). On the wake axisymmetry and secondary structures behind low aspect-ratio wall-mounted prisms. 2022 Canadian Society of Mechanical Engineering (CSME) International Congress, Edmonton, AB, Canada.
+
+* **Goswami, S.**, Hemmati A. (2020). Recovery of viscoelastic turbulent pipeflow past square bar roughness. 73rd Annual Meeting of the American Physics Society (APS) Division of Fluid Dynamics, Chicago, IL, USA.
+
+## Thesis:
+
+* **Goswami, S.** (2020). Response and Recovery of Turbulent Pipeflow Past Square Bar Roughness Elements. ([Link](https://doi.org/10.7939/r3-hgax-3316))
+
+<!-- ## Peer-reviewed conference papers: -->
