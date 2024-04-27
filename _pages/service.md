@@ -5,23 +5,29 @@ permalink: /community/
 author_profile: true
 ---
 
+### Faculty of Engineering, Mechanical Engineering Department
+
+_University of Alberta, Edmonton, Canada_
+
+- Laboratory Safety Associate (Apr 2022 - Present)
+
 ### Graduate Students’ Association (GSA)
 
 _University of Alberta, Edmonton, Canada_
 
-- Councillor-at-Large (CAL) of Graduate Students’ Association (GSA) Council (Jun 2022 - Present)
+- Councillor-at-Large (CAL) of Graduate Students’ Association (GSA) Council (Jun 2022 - Apr 2024)
 
 ### Faculty of Engineering Council
 
 _University of Alberta, Edmonton, Canada_
 
-- Council Member (Jul 2022 - Present)
+- Council Member (Jul 2022 - Apr 2024)
 
 ### General Faculties Council (GFC)
 
 _University of Alberta, Edmonton, Canada_
 
-- Council Member (Jul 2022 - Present)
+- Council Member (Jul 2022 - Apr 2024)
 
 ### Albertaloop
 
