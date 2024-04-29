@@ -20,6 +20,9 @@ author_profile: true
 
 ## Technical presentations & workshops (refereed abstract & oral presentation):
 
+* **Goswami, S.**, Hemmati A. (2024). Turbulence Transition in the Wake of Wall-Mounted Prisms. Thirteenth International Symposium on
+Turbulence and Shear Flow Phenomena (TSFP13), Montréal, Canada.
+
 * **Goswami, S.**, Hemmati A. (2023). The mechanism of unsteady wake transition behind large depth-ratio wall-mounted prisms. 76th Annual Meeting of the American Physics Society (APS) Division of Fluid Dynamics, Washington, DC, USA.
 
 * **Goswami, S.**, Hemmati A. (2022). Mean wake transitions of wall mounted long prisms at low Reynolds numbers. 75th Annual Meeting of the American Physics Society (APS) Division of Fluid Dynamics, Indianapolis, IN, USA.

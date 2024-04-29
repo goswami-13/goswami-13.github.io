@@ -25,7 +25,7 @@ _University of Alberta, Edmonton, Canada_
 
 _University of Alberta, Edmonton, Canada_
 
-- Teaching assistant (_Winter 2020 &#124; Spring/Summer 2021 &#124; Fall 2021_)
+- Teaching assistant (_Winter 2020 &#124; Spring/Summer 2021 &#124; Fall 2021 &#124; Spring/Summer 2024_)
   - Held laboratory seminars on experiments in mechanical engineering measurement techniques, treatment of measurement data, introduction to engineering report writing.
   - Co-instructed temperature measurement lab session.
   - Provided guidance to student in technical report writing.
