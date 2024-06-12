@@ -3,23 +3,26 @@ main:
   - title: "Work Experience"
     url: /workexp/
 
-  - title: "Projects"
-    url: /projects/
-
   - title: "Education"
     url: /education/
 
-  #- title: "Awards"
-  #  url: /awards/
-
-  - title: "Community Involvement"
-    url: /community/
-
+  - title: "Blog"
+    url: /year-archive/
+  
+  - title: "Talks"
+    url: /Talks/
+  
   - title: "Publications"
     url: /publications/
 
   - title: "Teaching"
     url: /teaching/
 
-  - title: "Blog"
-    url: /year-archive/
+  - title: "Community Involvement"
+    url: /community/
+
+  - title: "Projects"
+    url: /projects/
+
+  #- title: "Awards"
+  #  url: /awards/

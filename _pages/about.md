@@ -18,7 +18,7 @@ Currently pursuing a Ph.D. in the Department of Mechanical Engineering at the Un
 
 <!-- My graduate research involves studying the dynamics of wake transitions and vortex interactions behind wall-mounted prisms (bluff bodies) as well as investigating passive flow control methods to enhance turbulent mixing in pipe flow. I employ Computational Fluid Dynamics techniques to study these problems, including Direct Numerical Simulations (DNS), Large Eddy Simulations (LES), and Reynolds-Averaged Navier-Stokes (RANS) based modelling methods. Currently as a Ph.D candidate at the Department of Mechanical Enginerring, University of Alberta, I delving into the dynamics of bluff body wakes and vortex interactions. My M.Sc. research focused on investigating the response and recovery of turbulent pipeflow past square-bar roughness elements, expanding my expertise in Computational Fluid Dynamics and turbulence modeling. -->
 
-**𝐑𝐞𝐬𝐞𝐚𝐫𝐜𝐡 𝐒𝐤𝐢𝐥𝐥𝐬**
+**𝐑𝐞𝐬𝐞𝐚𝐫𝐜𝐡 𝐒𝐤𝐢𝐥𝐥𝐬:**
 - Proficient in utilizing open-source Computational Fluid Dynamics (CFD) tools, including OpenFOAM (finite-volume-based) and NEK5000/NekRS (spectral-element-based). 
 - Developed an open-source simulation framework by seamlessly integrating OpenFOAM with Python, creating a comprehensive mesh-to-result process. 
 - Adept at high-performance computing (HPC) and GPU simulations within NEK5000. 
@@ -26,12 +26,15 @@ Currently pursuing a Ph.D. in the Department of Mechanical Engineering at the Un
 - [Certified Solidworks Associate (CSWA)](https://cv.virtualtester.com/qr/?b=SLDWRKS&i=C-H9BUL3R8B6)
 
 **Programming Skills:**
-- Proficient in Python, and skilled at C++ and FORTRAN programming.
+- Proficient in Python, C++ and FORTRAN programming.
 - Expertise in utilizing Python libraries and frameworks such as NumPy, Pandas, Matplotlib, and TensorFlow, to extract and interpret high-fidelty CFD data.
 - Integrated Python with OpenFOAM (C++ based) to ease data analysis.
 - Adept in OpenFOAM and NEK5000 simulation framework.
 
-You can download a PDF copy of my CV [here](/files/CV_Shubham.pdf).
+<!-- You can download a PDF copy of my CV [here](/files/CV_Shubham.pdf). -->
+
+**CV:**
+<iframe src="/files/CV_Shubham.pdf" width="100%" height="500" frameborder="no" border="0" marginwidth="0" marginheight="0"></iframe>
 
 
 <!-- {% for tag in site.tags %}
