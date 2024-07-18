@@ -5,7 +5,13 @@ permalink: /publications/
 author_profile: true
 ---
 
-## Peer-reviewed journal papers:
+# Journal Publications:
+## Manuscripts Under Review
+* **Goswami, S.**, Hemmati A. (2024). Influence of depth-ratio on turbulence transition in the wake of wall-mounted prisms. Journal of Fluid Mechanics (Under Review, Jun 2024)
+
+* **Goswami, S.**, Hemmati A. (2024). Impact of depth-ratio on shear-layer dynamics and wake interactions around wall-mounted prisms. Journal of Wind Engineering and Industrial Aerodynamics (Under Review, May 2024)
+
+## Accepted & Published Manuscripts:
 * **Goswami, S.**, & Hemmati, A. (2023). Mean wake evolution behind low aspect-ratio wall-mounted finite prisms. International Journal of Heat and Fluid Flow, 104, 109237. ([Link](https://doi.org/10.1016/j.ijheatfluidflow.2023.109237))
 
 * **Goswami, S.**, & Hemmati, A. (2022). Mechanisms of wake asymmetry and secondary structures behind low aspect-ratio wall-mounted prisms. Journal of Fluid Mechanics, 950, A31. ([Link](https://doi.org/10.1017/jfm.2022.824))
@@ -18,7 +24,11 @@ author_profile: true
 
 * **Goswami, S.**, & Hemmati, A. (2020). Response of turbulent pipeflow to multiple square bar roughness elements at high Reynolds number. Physics of Fluids, 32(7). ([Link](https://doi.org/10.1063/5.0014832))
 
-## Technical presentations & workshops (refereed abstract & oral presentation):
+## Refereed Conference Full-Papers
+* **Goswami, S.**, Hemmati A. (2024). Turbulence Transition in the Wake of Wall-Mounted Prisms. Thirteenth International Symposium on
+Turbulence and Shear Flow Phenomena (TSFP13), Montréal, Canada.
+
+## Conference Presentations:
 
 * **Goswami, S.**, Hemmati A. (2024). Turbulence Transition in the Wake of Wall-Mounted Prisms. Thirteenth International Symposium on
 Turbulence and Shear Flow Phenomena (TSFP13), Montréal, Canada.
