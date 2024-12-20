@@ -18,11 +18,11 @@ main:
   - title: "Teaching"
     url: /teaching/
 
-  - title: "Community Involvement"
-    url: /community/
+  # - title: "Community Involvement"
+  #   url: /community/
 
-  - title: "Projects"
-    url: /projects/
+  # - title: "Projects"
+  #   url: /projects/
 
   #- title: "Awards"
   #  url: /awards/
