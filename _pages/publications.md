@@ -7,11 +7,15 @@ author_profile: true
 
 ## Journal Publications:
 ### Manuscripts Under Review
-* **Goswami, S.**, Hemmati A. (2024). Influence of depth-ratio on turbulence transition in the wake of wall-mounted prisms. Journal of Fluid Mechanics (Under Review, Jun 2024)
+* **Goswami, S.**, & Hemmati A. (2025). Destabilization of leading-edge shear-layer behind wall-mounted long prisms. Journal of Fluid Mechanics. (Under Review, December 2024)
 
-* **Goswami, S.**, Hemmati A. (2024). Impact of depth-ratio on shear-layer dynamics and wake interactions around wall-mounted prisms. Journal of Wind Engineering and Industrial Aerodynamics (Under Review, May 2024)
+* Shojaee A. S., **Goswami, S.**, Lange C., & Hemmati A. (2025). A Neural Network approach to improve Reynolds Averaged Navier-Stokes modeling of bluff body wakes. AIP Advances (Under Review, December 2024)
 
 ### Accepted & Published Manuscripts:
+* **Goswami, S.**, & Hemmati, A. (2024). Influence of depth-ratio on turbulence transition in the wake of wall-mounted prisms. Journal of Fluid Mechanics (Accepted, November 2024)
+
+* **Goswami, S.**, & Hemmati A. (2024). Impact of depth-ratio on shear-layer dynamics and wake interactions around wall-mounted prisms. Physics of Fluids, 36(11). ([Link](https://doi.org/10.1063/5.0234476))
+
 * **Goswami, S.**, & Hemmati, A. (2023). Mean wake evolution behind low aspect-ratio wall-mounted finite prisms. International Journal of Heat and Fluid Flow, 104, 109237. ([Link](https://doi.org/10.1016/j.ijheatfluidflow.2023.109237))
 
 * **Goswami, S.**, & Hemmati, A. (2022). Mechanisms of wake asymmetry and secondary structures behind low aspect-ratio wall-mounted prisms. Journal of Fluid Mechanics, 950, A31. ([Link](https://doi.org/10.1017/jfm.2022.824))
