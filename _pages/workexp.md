@@ -37,18 +37,18 @@ _University of Alberta, Edmonton, Alberta, Canada_
 
 ## Work Experience
 
-### Laboratory Administrator/Manager (Jan 2022 – Present)
+### Laboratory Administrator/Manager (Jan 2022 – Aug 2024)
 
 _Computational Fluid Engineering Laboratory (University of Alberta)_
 
 - Updated and maintained the computational facilities at Computational Fluid Engineering Laboratory.
 - Designed, Assembled, and tested three high-performance computing (HPC) workstations for research purposes.
-- Successfully secured **$\approx$ $200k in funding**, \$102,748 in 2023 and \$91,605 in 2024, for the research group to access fast compute resources on the **Digital Research Alliance of Canada** Computing clusters.
+- Successfully secured **$\approx$ $\$200k$ in funding**, $\$102,748$ in 2023 and $\$91,605$ in 2024, for the research group to access fast compute resources on the **Digital Research Alliance of Canada** Computing clusters.
 - Led the proposal writing and submission process, demonstrating strong grant writing skills.
 - Expertise in Linux, Windows, and MacOS operating systems.
 - Experience in managing and troubleshooting HPC clusters and workstations.
 
-### Engineering Research Safety Associate (August 2021 - Present)
+### Engineering Research Safety Associate (August 2021 - Aug 2024)
 
 _University of Alberta (Dept. of Mechanical Engineering)_
 
