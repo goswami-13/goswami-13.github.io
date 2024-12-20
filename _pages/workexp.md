@@ -43,7 +43,7 @@ _Computational Fluid Engineering Laboratory (University of Alberta)_
 
 - Updated and maintained the computational facilities at Computational Fluid Engineering Laboratory.
 - Designed, Assembled, and tested three high-performance computing (HPC) workstations for research purposes.
-- Successfully secured **$\approx$ $\$200k$ in funding** for the research group to access fast compute resources on the **Digital Research Alliance of Canada** Computing clusters.
+- Successfully secured **$\approx$ \$200k in funding** for the research group to access fast compute resources on the **Digital Research Alliance of Canada** Computing clusters.
 - Led the proposal writing and submission process, demonstrating strong grant writing skills.
 - Expertise in Linux, Windows, and MacOS operating systems.
 - Experience in managing and troubleshooting HPC clusters and workstations.
