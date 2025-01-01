@@ -9,8 +9,6 @@ author_profile: true
 ### Manuscripts Under Review
 * **Goswami, S.**, & Hemmati A. (2025). Destabilization of leading-edge shear-layer behind wall-mounted long prisms. Journal of Fluid Mechanics. (Under Review, December 2024)
 
-* Shojaee A. S., **Goswami, S.**, Lange C., & Hemmati A. (2025). A Neural Network approach to improve Reynolds Averaged Navier-Stokes modeling of bluff body wakes. AIP Advances (Under Review, December 2024)
-
 ### Accepted & Published Manuscripts:
 * **Goswami, S.**, & Hemmati, A. (2024). Influence of depth-ratio on turbulence transition in the wake of wall-mounted prisms. Journal of Fluid Mechanics (Accepted, November 2024)
 
