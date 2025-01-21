@@ -8,13 +8,11 @@ redirect_from:
   - /about.html
 ---
 
-I'm a passionate researcher with a deep interest in a range of mechanical engineering disciplines. My professional journey has led me through academic research as well as hands-on experiences in the field.
+I am a PhD graduate and a passionate researcher with extensive expertise in Mechanical Engineering disciplines, particularly in Computational Fluid Dynamics (CFD), turbulence modeling, and computational design optimization. My journey has combined rigorous academic research with practical applications, positioning me at the intersection of innovation and real-world problem-solving.
 
-**𝐑𝐞𝐬𝐞𝐚𝐫𝐜𝐡 𝐈𝐧𝐭𝐞𝐫𝐞𝐬𝐭𝐬**: My interest lies in Computational Fluid Dynamics, Aero/Hydrodynamics, Finite Element Analysis, Pipeflow dynamics, Computational Mechanics, Turbulence, Fluid-Structure Interaction, Multiphase Flows, Renewable Energy, Heat Transfer, and Renewable Energy. In general, I am deeply passionate about addressing challenges through computational and simulation methodologies, seeking innovative solutions to complex problems.
+**𝐑𝐞𝐬𝐞𝐚𝐫𝐜𝐡 𝐈𝐧𝐭𝐞𝐫𝐞𝐬𝐭𝐬**: My core interests include Computational Fluid Dynamics, Aero/Hydrodynamics, Finite Element Analysis, Pipeflow dynamics, Computational Mechanics, Turbulence, Fluid-Structure Interaction, Multiphase Flows, Renewable Energy, Heat Transfer, and Renewable Energy. In general, I am deeply passionate about addressing challenges through computational and simulation methodologies, seeking innovative solutions to complex problems.
 
-**𝐄𝐱𝐩𝐞𝐫𝐢𝐞𝐧𝐜𝐞**: Engaged in graduate research, I explore the intricacies of wake transitions and vortex interactions behind wall-mounted prisms (bluff bodies). Simultaneously, I delve into passive flow control methods to enhance turbulent mixing in pipe flow. Employing advanced Computational Fluid Dynamics (CFD) techniques such as Direct Numerical Simulations (DNS), Large Eddy Simulations (LES), and Reynolds-Averaged Navier-Stokes (RANS) modeling, I scrutinize these phenomena.
-
-Currently pursuing a Ph.D. in the Department of Mechanical Engineering at the University of Alberta, my focus is on unraveling the dynamics of bluff body wakes and vortex interactions. In my M.Sc. research, I investigated the response and recovery of turbulent pipeflow past square-bar roughness elements, significantly broadening my expertise in Computational Fluid Dynamics and turbulence modeling.
+**𝐑𝐞𝐬𝐞𝐚𝐫𝐜𝐡 𝐄𝐱𝐩𝐞𝐫𝐢𝐞𝐧𝐜𝐞**: During my PhD, I explored wake transitions and interactions behind wall-mounted bluff bodies, leveraging advanced CFD techniques such as Direct Numerical Simulations (DNS) and Large Eddy Simulations (LES) to investigate vortex dynamics. My Master's research focused on turbulent pipeflow recovery past square-bar roughness elements, expanding my proficiency in turbulence modeling and flow analysis. In my role as a Research Associate at the University of Alberta, I further advanced CFD methodologies to study turbulent pipe flow evolution past sudden step changes, delivering valuable insights into complex flow phenomena.
 
 **𝐑𝐞𝐬𝐞𝐚𝐫𝐜𝐡 𝐒𝐤𝐢𝐥𝐥𝐬:**
 - Proficient in utilizing open-source Computational Fluid Dynamics (CFD) tools, including OpenFOAM (finite-volume-based) and NEK5000/NekRS (spectral-element-based). 
