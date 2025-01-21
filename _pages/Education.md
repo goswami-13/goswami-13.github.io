@@ -5,10 +5,10 @@ permalink: /education/
 author_profile: true
 ---
 
-### Ph.D. in Mechanical Engineering (January 2021 - Present)
+### Ph.D. in Mechanical Engineering (January 2021 - January 2025)
 _University of Alberta, Edmonton, Canada_
 
-**Thesis:** Wake Transitions and Interactions Behind Wall-Mounted Bluff Bodies *(In-progress)*
+**Thesis:** Wake Transitions and Interactions Behind Wall-Mounted Prisms
 
 GPA: 3.6/4
 
