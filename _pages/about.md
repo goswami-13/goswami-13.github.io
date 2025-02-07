@@ -12,7 +12,7 @@ I am a Postdoctoral Associate at the University of Calgary with a strong backgro
 
 **Research Interests**: My core interests include Computational Fluid Dynamics, Aero/Hydrodynamics, Turbulence, Combustion, Model development, Fluid-Structure Interaction, Multiphase Flows, Renewable Energy, Heat Transfer, and Renewable Energy. In general, I am deeply passionate about addressing challenges through computational and simulation methodologies, seeking innovative solutions to complex problems.
 
-**𝐑𝐞𝐬𝐞𝐚𝐫𝐜𝐡 𝐒𝐤𝐢𝐥𝐥𝐬:**
+**Research Skills**
 - Proficient in utilizing open-source Computational Fluid Dynamics (CFD) tools, including OpenFOAM (finite-volume-based) and NEK5000/NekRS (spectral-element-based). 
 - Developed an open-source simulation framework by seamlessly integrating OpenFOAM with Python, creating a comprehensive mesh-to-result process. 
 - Adept at high-performance computing (HPC) and GPU simulations within NEK5000. 
