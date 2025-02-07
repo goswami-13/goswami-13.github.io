@@ -8,11 +8,9 @@ redirect_from:
   - /about.html
 ---
 
-I am a PhD graduate and a passionate researcher with extensive expertise in Mechanical Engineering disciplines, particularly in Computational Fluid Dynamics (CFD), turbulence modeling, and computational design optimization. My journey has combined rigorous academic research with practical applications, positioning me at the intersection of innovation and real-world problem-solving.
+I am a Postdoctoral Associate at the University of Calgary with a strong background in Computational Fluid Dynamics (CFD), turbulence modeling, and computational design optimization. My research focuses on advancing simulation methodologies to address complex fluid flow problems, particularly in energy and sustainability applications. I am passionate about leveraging computational methods to drive innovation in fluid mechanics, tackling real-world engineering challenges, and contributing to the development of sustainable technologies.
 
-**𝐑𝐞𝐬𝐞𝐚𝐫𝐜𝐡 𝐈𝐧𝐭𝐞𝐫𝐞𝐬𝐭𝐬**: My core interests include Computational Fluid Dynamics, Aero/Hydrodynamics, Finite Element Analysis, Pipeflow dynamics, Computational Mechanics, Turbulence, Fluid-Structure Interaction, Multiphase Flows, Renewable Energy, Heat Transfer, and Renewable Energy. In general, I am deeply passionate about addressing challenges through computational and simulation methodologies, seeking innovative solutions to complex problems.
-
-**𝐑𝐞𝐬𝐞𝐚𝐫𝐜𝐡 𝐄𝐱𝐩𝐞𝐫𝐢𝐞𝐧𝐜𝐞**: During my PhD, I explored wake transitions and interactions behind wall-mounted bluff bodies, leveraging advanced CFD techniques such as Direct Numerical Simulations (DNS) and Large Eddy Simulations (LES) to investigate vortex dynamics. My Master's research focused on turbulent pipeflow recovery past square-bar roughness elements, expanding my proficiency in turbulence modeling and flow analysis. In my role as a Research Associate at the University of Alberta, I further advanced CFD methodologies to study turbulent pipe flow evolution past sudden step changes, delivering valuable insights into complex flow phenomena.
+**Research Interests**: My core interests include Computational Fluid Dynamics, Aero/Hydrodynamics, Turbulence, Combustion, Model development, Fluid-Structure Interaction, Multiphase Flows, Renewable Energy, Heat Transfer, and Renewable Energy. In general, I am deeply passionate about addressing challenges through computational and simulation methodologies, seeking innovative solutions to complex problems.
 
 **𝐑𝐞𝐬𝐞𝐚𝐫𝐜𝐡 𝐒𝐤𝐢𝐥𝐥𝐬:**
 - Proficient in utilizing open-source Computational Fluid Dynamics (CFD) tools, including OpenFOAM (finite-volume-based) and NEK5000/NekRS (spectral-element-based). 

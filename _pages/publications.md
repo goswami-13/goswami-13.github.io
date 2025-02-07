@@ -10,6 +10,8 @@ author_profile: true
 * **Goswami, S.**, & Hemmati A. (2025). Destabilization of leading-edge shear-layer behind wall-mounted long prisms. Journal of Fluid Mechanics. (Under Review, December 2024)
 
 ### Accepted & Published Manuscripts:
+* Shojaee A. S., **Goswami, S.**, Lange C., and Hemmati A. (2025). A Neural Network approach to improve Reynolds Averaged Navier-Stokes modeling of bluff body wakes. AIP Advances (Accepted, January 2025)
+
 * **Goswami, S.**, & Hemmati, A. (2024). Influence of depth-ratio on turbulence transition in the wake of wall-mounted prisms. Journal of Fluid Mechanics (Accepted, November 2024)
 
 * **Goswami, S.**, & Hemmati A. (2024). Impact of depth-ratio on shear-layer dynamics and wake interactions around wall-mounted prisms. Physics of Fluids, 36(11). ([Link](https://doi.org/10.1063/5.0234476))
@@ -47,6 +49,8 @@ Turbulence and Shear Flow Phenomena (TSFP13), Montréal, Canada.
 
 ### Thesis:
 
-* **Goswami, S.** (2020). Response and Recovery of Turbulent Pipeflow Past Square Bar Roughness Elements. ([Link](https://doi.org/10.7939/r3-hgax-3316))
+* **Goswami, S.** (2025). Wake transitions and interactions behind wall-mounted prisms, PhD Thesis, University of Alberta, Edmonton, AB.
+
+* **Goswami, S.** (2020). Response and Recovery of Turbulent Pipeflow Past Square Bar Roughness Elements, MSc Thesis, University of Alberta, Edmonton, AB.. ([Link](https://doi.org/10.7939/r3-hgax-3316))
 
 <!-- ## Peer-reviewed conference papers: -->

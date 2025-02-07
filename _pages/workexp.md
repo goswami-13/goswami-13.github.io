@@ -7,9 +7,16 @@ redirect_from:
   - /workexp.html
 ---
 
-## Academic Experience
+## Research Experience
 
-### Research Assistant - PhD Candidate (Jan 2021 – Present)
+### Postdoctoral Associate (Feb 2025 – Present)
+
+_University of Calgary, Calgary, Alberta, Canada_
+
+- Developing advanced numerical models to detect and analyze combustion instabilities in hydrogen burners, with a focus on enabling efficient and reliable hydrogen-based energy systems.
+- This work contributes to the decarbonization of the energy sector in Alberta, supporting the transition to a sustainable, low-carbon future.
+
+### Research Assistant - PhD Candidate (Jan 2021 – Jan 2025)
 
 _University of Alberta, Edmonton, Alberta, Canada_
 
