@@ -10,9 +10,10 @@ author_profile: true
 * **Goswami, S.**, & Hemmati A. (2025). Destabilization of leading-edge shear-layer behind wall-mounted long prisms. Journal of Fluid Mechanics. (Under Review, December 2024)
 
 ### Accepted & Published Manuscripts:
-* Shojaee A. S., **Goswami, S.**, Lange C., and Hemmati A. (2025). A Neural Network approach to improve Reynolds Averaged Navier-Stokes modeling of bluff body wakes. AIP Advances (Accepted, January 2025)
 
-* **Goswami, S.**, & Hemmati, A. (2024). Influence of depth-ratio on turbulence transition in the wake of wall-mounted prisms. Journal of Fluid Mechanics (Accepted, November 2024)
+* **Goswami, S.**, & Hemmati, A. (2024). Influence of depth-ratio on turbulence transition in the wake of wall-mounted prisms. Journal of Fluid Mechanics (Accepted, November 2024).
+
+* Shojaee A. S., **Goswami, S.**, Lange C., and Hemmati A. (2025). A Neural Network approach to improve Reynolds Averaged Navier-Stokes modeling of bluff body wakes. AIP Advances; 15 (2): 025018. ([Link](https://doi.org/10.1063/5.0251597))
 
 * **Goswami, S.**, & Hemmati A. (2024). Impact of depth-ratio on shear-layer dynamics and wake interactions around wall-mounted prisms. Physics of Fluids, 36(11). ([Link](https://doi.org/10.1063/5.0234476))
 
@@ -30,12 +31,11 @@ author_profile: true
 
 ### Refereed Conference Full-Papers
 * **Goswami, S.**, Hemmati A. (2024). Turbulence Transition in the Wake of Wall-Mounted Prisms. Thirteenth International Symposium on
-Turbulence and Shear Flow Phenomena (TSFP13), Montréal, Canada.
+Turbulence and Shear Flow Phenomena (TSFP13), Montréal, Canada.  ([Link](http://www.tsfp-conference.org/proceedings/2023/162.pdf))
 
 ### Conference Presentations:
 
-* **Goswami, S.**, Hemmati A. (2024). Turbulence Transition in the Wake of Wall-Mounted Prisms. Thirteenth International Symposium on
-Turbulence and Shear Flow Phenomena (TSFP13), Montréal, Canada.
+* **Goswami, S.**, Hemmati A. (2024). Turbulence Transition in the Wake of Wall-Mounted Prisms. Thirteenth International Symposium on Turbulence and Shear Flow Phenomena (TSFP13), Montréal, Canada.
 
 * **Goswami, S.**, Hemmati A. (2023). The mechanism of unsteady wake transition behind large depth-ratio wall-mounted prisms. 76th Annual Meeting of the American Physics Society (APS) Division of Fluid Dynamics, Washington, DC, USA.
 
