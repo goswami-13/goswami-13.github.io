@@ -11,7 +11,7 @@ author_profile: true
 
 ### Accepted & Published Manuscripts:
 
-* **Goswami, S.**, & Hemmati, A. (2024). Influence of depth-ratio on turbulence transition in the wake of wall-mounted prisms. Journal of Fluid Mechanics (Accepted, November 2024).
+* **Goswami, S.**, & Hemmati, A. (2025).  Influence of depth-ratio on turbulence transition in the wake of wall-mounted prisms. Journal of Fluid Mechanics. 1007:A9. ([Link](https://doi.org/10.1017/jfm.2024.1109))
 
 * Shojaee A. S., **Goswami, S.**, Lange C., and Hemmati A. (2025). A Neural Network approach to improve Reynolds Averaged Navier-Stokes modeling of bluff body wakes. AIP Advances; 15 (2): 025018. ([Link](https://doi.org/10.1063/5.0251597))
 
