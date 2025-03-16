@@ -37,7 +37,7 @@ _University of Alberta, Edmonton, Alberta, Canada_
 
 _University of Alberta, Edmonton, Alberta, Canada_
 
-- Thesis Title: Response and Recovery of turbulent pipeflow past squarebar roughness elements.
+- Thesis Title: **Response and Recovery of turbulent pipeflow past squarebar roughness elements**.
 - Study of pipeflow dynamics using Computational Fluid Dynamics. 
 - Expertise in Reynolds-Averaged Navier-Stokes (RANS) based turbulence modeling and Direct Numerical Simulations (DNS). 
 - Software: OpenFOAM, ANSYS, MATLAB, Tecplot, and ParaView.
