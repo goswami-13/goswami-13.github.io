@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://goswami-13.github.io/goswami-13/sitemap.xml
+Sitemap: https://goswami-13.github.io/sitemap.xml
