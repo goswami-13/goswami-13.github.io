@@ -1,0 +1,332 @@
+<!DOCTYPE html> <html> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title> The Final Frontier: Conquering OpenFOAM Post-Processing with Command-Line Power | Shubham Goswami, PhD </title> <meta name="author" content="Shubham Goswami, PhD"> <meta name="description" content="Personal and professional website of Shubham Goswami, PhD. "> <link rel="stylesheet" href="/al-folio/assets/css/bootstrap.min.css?a4b3f509e79c54a512b890d73235ef04"> <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/css/mdb.min.css" integrity="sha256-jpjYvU3G3N6nrrBwXJoVEYI/0zw8htfFnhT9ljN3JJw=" crossorigin="anonymous"> <link defer rel="stylesheet" href="/al-folio/assets/css/academicons.min.css?f0b7046b84e425c55f3463ac249818f5"> <link defer rel="stylesheet" href="/al-folio/assets/css/scholar-icons.css?62b2ac103a88034e6882a5be5f3e2772"> <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap"> <link defer rel="stylesheet" href="/al-folio/assets/css/jekyll-pygments-themes-github.css?591dab5a4e56573bf4ef7fd332894c99" media="" id="highlight_theme_light"> <link rel="shortcut icon" href="data:image/svg+xml,&lt;svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22&gt;&lt;text%20y=%22.9em%22%20font-size=%2290%22&gt;%E2%9A%9B%EF%B8%8F&lt;/text&gt;&lt;/svg&gt;"> <link rel="stylesheet" href="/al-folio/assets/css/main.css?d41d8cd98f00b204e9800998ecf8427e"> <link rel="canonical" href="https://shubhamdgoswami.github.io/al-folio/posts/2024/03/blog-post-10/"> <script src="/al-folio/assets/js/theme.js?a81d82887dd692e91686b43de4542f18"></script> <link defer rel="stylesheet" href="/al-folio/assets/css/jekyll-pygments-themes-native.css?5847e5ed4a4568527aa6cfab446049ca" media="none" id="highlight_theme_dark"> <script>
+    initTheme();
+  </script> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.css" integrity="sha256-q9ba7o845pMPFU+zcAll8rv+gC+fSovKsOoNQ6cynuQ=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github.min.css" integrity="sha256-Oppd74ucMR5a5Dq96FxjEzGF7tTw2fZ/6ksAqDCM8GY=" crossorigin="anonymous" media="screen and (prefers-color-scheme: light)"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github-dark.min.css" integrity="sha256-nyCNAiECsdDHrr/s2OQsp5l9XeY2ZJ0rMepjCT2AkBk=" crossorigin="anonymous" media="screen and (prefers-color-scheme: dark)"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/diff2html@3.4.47/bundles/css/diff2html.min.css" integrity="sha256-IMBK4VNZp0ivwefSn51bswdsrhk0HoMTLc2GqFHFBXg=" crossorigin="anonymous"> <link defer rel="stylesheet" type="text/css" href="https://tikzjax.com/v1/fonts.css"> <script src="/al-folio/assets/js/distillpub/template.v2.js"></script> <script src="/al-folio/assets/js/distillpub/transforms.v2.js"></script> <style type="text/css">.fake-img{background:#bbb;border:1px solid rgba(0,0,0,0.1);box-shadow:0 0 4px rgba(0,0,0,0.1);margin-bottom:12px}.fake-img p{font-family:monospace;color:white;text-align:left;margin:12px 0;text-align:center;font-size:16px}</style> </head> <body> <d-front-matter> <script async type="text/json">
+      {
+            "title": "The Final Frontier: Conquering OpenFOAM Post-Processing with Command-Line Power",
+            "description": "",
+            "published": "March 18, 2024",
+            "authors": [
+              
+            ],
+            "katex": {
+              "delimiters": [
+                {
+                  "left": "$",
+                  "right": "$",
+                  "display": false
+                },
+                {
+                  "left": "$$",
+                  "right": "$$",
+                  "display": true
+                }
+              ]
+            }
+          }
+    </script> </d-front-matter> <header> <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation"> <div class="container"> <a class="navbar-brand title font-weight-lighter" href="/al-folio/"> <span class="font-weight-bold">Shubham</span> Goswami, PhD </a> <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar top-bar"></span> <span class="icon-bar middle-bar"></span> <span class="icon-bar bottom-bar"></span> </button> <div class="collapse navbar-collapse text-right" id="navbarNav"> <ul class="navbar-nav ml-auto flex-nowrap"> <li class="nav-item "> <a class="nav-link" href="/al-folio/">About </a> </li> <li class="nav-item "> <a class="nav-link" href="/al-folio/cv/">CV </a> </li> <li class="nav-item "> <a class="nav-link" href="/al-folio/blog/">Guides </a> </li> <li class="nav-item "> <a class="nav-link" href="/al-folio/publications/">Publications </a> </li> <li class="nav-item "> <a class="nav-link" href="/al-folio/teaching/">Teaching </a> </li> <li class="nav-item"> <button id="search-toggle" title="Search" onclick="openSearchModal()"> <span class="nav-link">ctrl k <i class="ti ti-search"></i></span> </button> </li> <li class="toggle-container"> <button id="light-toggle" title="Change theme"> <i class="ti ti-sun-moon" id="light-toggle-system"></i> <i class="ti ti-moon-filled" id="light-toggle-dark"></i> <i class="ti ti-sun-filled" id="light-toggle-light"></i> </button> </li> </ul> </div> </div> </nav> <progress id="progress" value="0"> <div class="progress-container"> <span class="progress-bar"></span> </div> </progress> </header> <div class="post distill"> <d-title> <h1>The Final Frontier: Conquering OpenFOAM Post-Processing with Command-Line Power</h1> <p></p> </d-title> <d-article> <d-contents> <nav class="l-text figcaption"> <h3>Contents</h3> </nav> </d-contents> <p>Ready to take your OpenFOAM post-processing skills to the next level? This guide completes our post-processing triology, delving into conventional post-processing: extracting and analyzing data after your simulation finishes. Unlock the power of command-line techniques and discover how to effortlessly visualize your data using Python. Learn to extract specific data points, analyze results, and create compelling visuals to gain deeper insights from your OpenFOAM simulations.</p> <figure> <img src="https://goswami-13.github.io/images/Blog10/MediumPic.jpeg" width="80%"> </figure> <p>Wrapping up our exploration of various post-processing techniques in OpenFOAM, this final installment delves into command-line post-processing. In prior articles, I’ve delved into run-time post-processing using function objects within OpenFOAM and explored simplifying post-processing with Python [Links here]. Run-time post-processing offers users flexibility by providing access to all time steps during simulation, not just data written out. It allows monitoring of processed data during simulation, offering immediate results at simulation’s end. However, what if you forget to include the correct function objects before running simulations? Or if, like many novice researchers, you’re unsure what post-processing you’ll need beforehand? What if you actually want to ‘post’ process your data? This is where command-line post-processing proves invaluable.</p> <p>In the traditional sense, post-processing, as the term implies, involves data manipulation conducted after a simulation concludes. This allows users to analyze data using available results like time directories and fields once the simulation has run its course. There are two primary methods for post-processing in OpenFOAM: conventional post-processing via the <code class="language-plaintext highlighter-rouge">postProcess</code> utility and solver-run post-processing through <code class="language-plaintext highlighter-rouge">&lt;solver&gt; -postProcess</code> utility. Both methods leverage the functionality embedded in OpenFOAM’s function object framework. The conventional <code class="language-plaintext highlighter-rouge">postProcess</code> utility applies any function object to the data within time directories, while the solver-run utility executes function objects specified in the <code class="language-plaintext highlighter-rouge">controlDict</code> file.</p> <p>To illustrate command-line post-processing techniques, let’s consider the flow around a circular cylinder as a case study. You can download the simulation files from <a href="https://github.com/goswami-13/OpenFOAM-cases/tree/main/4_Tutorials" rel="external nofollow noopener" target="_blank">here</a>, labeled as <code class="language-plaintext highlighter-rouge">Cylinder_Run</code>. This case has already been executed, providing one time directory. We’ll utilize this case to accomplish three post-processing tasks:</p> <ol> <li>Extracting data along multiple lines from the simulation.</li> <li>Computing fluctuating velocity and vorticity.</li> <li>Visualizing the simulation results by extracting a cross-section (surface/slice) through the domain.</li> </ol> <p>Without further ado, let’s dive in.</p> <h2 id="command-line-post-processing-in-openfoam">Command-line post-processing in OpenFOAM</h2> <p>Exploring the two command-line post-processing methods mentioned earlier, let’s delve into how they are executed.</p> <h3 id="standard-postprocess-utility">Standard postProcess utility:</h3> <p>The standard <code class="language-plaintext highlighter-rouge">postProcess</code> utility in OpenFOAM is executed with the following command:</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>postProcess <span class="nt">-func</span> &lt;functions&gt;
+</code></pre></div></div> <h3 id="solver-run-post-processing-utility">Solver-run post-processing utility:</h3> <p>For instance, with <code class="language-plaintext highlighter-rouge">pimpleFoam</code>, the solver-run post-processing utility is invoked using:</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pimpleFoam <span class="nt">-postProcess</span> <span class="nt">-func</span> &lt;functions&gt;
+</code></pre></div></div> <p>You can find a comprehensive list of available function objects for both of these functionalities in the <code class="language-plaintext highlighter-rouge">$FOAM_ETC/caseDicts/postProcessing</code> directory within your OpenFOAM installation. Here, you’ll find a myriad of options to suit your post-processing needs, including:</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>postProcessing/
+├── fields
+├── flowRate
+├── forces
+├── graphs
+├── lagrangian
+├── minMax
+├── numerical
+├── pressure
+├── probes
+├── solvers
+│   └── scalarTransport
+├── surfaceFieldValue
+└── visualization
+</code></pre></div></div> <h2 id="extracting-data-along-lines">Extracting data along lines</h2> <p>Let’s delve into practical learning by extracting data along a line specified between two points from the simulation. To begin, we’ll create a file named <code class="language-plaintext highlighter-rouge">sampleDict</code>. This file will house the function object necessary for post-processing. Since we’re interested in sampling a line, we’ll generate a file named <code class="language-plaintext highlighter-rouge">MultipleLines</code> within the <code class="language-plaintext highlighter-rouge">system</code> directory. This file will contain the function object for <code class="language-plaintext highlighter-rouge">sets</code>, which is utilized to sample lines. In this scenario, we aim to extract velocity, pressure, mean velocity, mean pressure, and prime-squared mean velocity data along three lines defined by 1000 points. Additionally, we’ll format the data in <code class="language-plaintext highlighter-rouge">.csv</code> format, including the coordinates of the extracted data. Below is an illustrative example of such a file:</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/<span class="k">*</span><span class="nt">--------------------------------</span><span class="k">*</span>- C++ -<span class="k">*</span><span class="nt">----------------------------------</span><span class="k">*</span><span class="se">\</span>
+  <span class="o">=========</span>                 |
+  <span class="se">\\</span>      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   <span class="se">\\</span>    /   O peration     |
+    <span class="se">\\</span>  /    A nd           | Web:      www.OpenFOAM.com
+     <span class="se">\\</span>/     M anipulation  |
+<span class="nt">-------------------------------------------------------------------------------</span>
+Description
+    Writes graph data <span class="k">for </span>specified fields along a line, specified by start
+    and end points.
+
+<span class="se">\*</span><span class="nt">---------------------------------------------------------------------------</span><span class="k">*</span>/
+
+
+// Sampling and I/O settings
+<span class="c">#includeEtc "caseDicts/postProcessing/graphs/sampleDict.cfg"</span>
+
+<span class="nb">type            </span>sets<span class="p">;</span>
+libs            <span class="o">(</span><span class="s2">"libsampling.so"</span><span class="o">)</span><span class="p">;</span>
+
+writeControl    writeTime<span class="p">;</span>
+
+interpolationScheme cellPoint<span class="p">;</span>
+
+setFormat   csv<span class="p">;</span>
+
+setConfig
+<span class="o">{</span>
+    <span class="nb">type    </span>uniform<span class="p">;</span>
+    axis    xyz<span class="p">;</span>  // x, y, z, xyz
+	nPoints	1000<span class="p">;</span>
+<span class="o">}</span>
+
+sets
+<span class="o">(</span>
+    line1
+    <span class="o">{</span>
+        <span class="nv">$setConfig</span><span class="p">;</span>
+        start   <span class="o">(</span>0 0 0<span class="o">)</span><span class="p">;</span>
+		end     <span class="o">(</span>1.8 0 0<span class="o">)</span><span class="p">;</span>
+    <span class="o">}</span>
+	
+	line2
+    <span class="o">{</span>
+        <span class="nv">$setConfig</span><span class="p">;</span>
+        start <span class="o">(</span>0.4 0.8 0<span class="o">)</span><span class="p">;</span>
+        end   <span class="o">(</span>0.4 <span class="nt">-0</span>.8 0<span class="o">)</span><span class="p">;</span>
+    <span class="o">}</span>
+	
+	line3
+    <span class="o">{</span>
+        <span class="nv">$setConfig</span><span class="p">;</span>
+        start <span class="o">(</span>0.8 0.8 0<span class="o">)</span><span class="p">;</span>
+        end   <span class="o">(</span>0.8 <span class="nt">-0</span>.8 0<span class="o">)</span><span class="p">;</span>
+    <span class="o">}</span>
+<span class="o">)</span><span class="p">;</span>
+
+fields  <span class="o">(</span>U p UMean pMean UPrime2Mean<span class="o">)</span><span class="p">;</span>
+
+// <span class="k">*************************************************************************</span> //
+</code></pre></div></div> <p>Now, let’s proceed to extract the data using the <code class="language-plaintext highlighter-rouge">postProcess</code> utility with the command:</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>postProcess <span class="nt">-func</span> MultipleLines
+</code></pre></div></div> <p>Executing this command will generate a folder within the <code class="language-plaintext highlighter-rouge">postProcessing</code> directory containing the extracted fields stored in <code class="language-plaintext highlighter-rouge">.csv</code> files. The directory structure will resemble the following:</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>MultipleLines/
+└── 4996.9
+    ├── line1_p_pMean_U_UMean_UPrime2Mean.csv
+    ├── line2_p_pMean_U_UMean_UPrime2Mean.csv
+    └── line3_p_pMean_U_UMean_UPrime2Mean.csv
+</code></pre></div></div> <p>These <code class="language-plaintext highlighter-rouge">CSV</code> files contain the sampled data along the specified lines. To visualize this data, one can easily plot it using Python. Below, I provide an example of plotting the mean axial velocity along the three lines.</p> <figure> <img src="https://goswami-13.github.io/images/Blog10/Velocity_Plots.jpeg" width="90%"> </figure> <p>For plotting the data, you can utilize a Python script, preferably within a Jupyter Notebook, as demonstrated below:</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">### import modules 
+</span>
+<span class="kn">import</span> <span class="n">matplotlib.colors</span>
+<span class="kn">import</span> <span class="n">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="n">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">import</span> <span class="n">fluidfoam</span> <span class="k">as</span> <span class="n">fl</span>
+<span class="kn">import</span> <span class="n">scipy</span> <span class="k">as</span> <span class="n">sp</span>
+<span class="kn">import</span> <span class="n">os</span>
+
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">rcParams</span><span class="p">.</span><span class="nf">update</span><span class="p">({</span><span class="sh">'</span><span class="s">font.size</span><span class="sh">'</span> <span class="p">:</span> <span class="mi">14</span><span class="p">,</span> <span class="sh">'</span><span class="s">font.family</span><span class="sh">'</span> <span class="p">:</span> <span class="sh">'</span><span class="s">Times New Roman</span><span class="sh">'</span><span class="p">,</span> <span class="sh">"</span><span class="s">text.usetex</span><span class="sh">"</span><span class="p">:</span> <span class="bp">True</span><span class="p">})</span>
+
+<span class="c1">### set paths
+</span><span class="n">Path</span> <span class="o">=</span> <span class="sh">'</span><span class="s">E:/4_Tutorials/Cylinder_DNS/postProcessing/</span><span class="sh">'</span>
+<span class="n">save_path</span> <span class="o">=</span> <span class="sh">'</span><span class="s">E:/4_Tutorials/Cylinder_DNS/</span><span class="sh">'</span>
+<span class="n">MultipleLinesData</span> <span class="o">=</span> <span class="sh">'</span><span class="s">MultipleLines/4996.9/</span><span class="sh">'</span> <span class="c1">## specify latestTime folder
+</span>
+<span class="c1">### get the list of files
+</span><span class="n">Files</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="nf">listdir</span><span class="p">(</span><span class="n">Path</span> <span class="o">+</span> <span class="n">MultipleLinesData</span><span class="p">)</span>
+
+<span class="c1">### extract data from csv files using pandas 
+</span><span class="n">Line1</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="nf">read_csv</span><span class="p">(</span><span class="n">Path</span> <span class="o">+</span> <span class="n">MultipleLinesData</span> <span class="o">+</span> <span class="n">Files</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">Line2</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="nf">read_csv</span><span class="p">(</span><span class="n">Path</span> <span class="o">+</span> <span class="n">MultipleLinesData</span> <span class="o">+</span> <span class="n">Files</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">Line3</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="nf">read_csv</span><span class="p">(</span><span class="n">Path</span> <span class="o">+</span> <span class="n">MultipleLinesData</span> <span class="o">+</span> <span class="n">Files</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+
+<span class="c1">### plot mean axial velocity profiles
+</span>
+<span class="n">d</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">Ub</span> <span class="o">=</span> <span class="mf">0.015</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">ax</span><span class="p">.</span><span class="nf">plot</span><span class="p">(</span><span class="n">Line1</span><span class="p">.</span><span class="n">x</span><span class="o">/</span><span class="n">d</span><span class="p">,</span> <span class="n">Line1</span><span class="p">.</span><span class="n">UMean_0</span><span class="o">/</span><span class="n">Ub</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="nf">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="sh">'</span><span class="s">k</span><span class="sh">'</span><span class="p">,</span> <span class="n">linestyle</span> <span class="o">=</span> <span class="sh">'</span><span class="s">--</span><span class="sh">'</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">.</span><span class="nf">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="sh">'</span><span class="s">$\overline{u}/U_b$</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="nf">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="sh">'</span><span class="s">$x/d$</span><span class="sh">'</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">.</span><span class="n">xaxis</span><span class="p">.</span><span class="nf">set_tick_params</span><span class="p">(</span><span class="n">direction</span><span class="o">=</span><span class="sh">'</span><span class="s">in</span><span class="sh">'</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="sh">'</span><span class="s">both</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">yaxis</span><span class="p">.</span><span class="nf">set_tick_params</span><span class="p">(</span><span class="n">direction</span><span class="o">=</span><span class="sh">'</span><span class="s">in</span><span class="sh">'</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="sh">'</span><span class="s">both</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">xaxis</span><span class="p">.</span><span class="nf">set_ticks_position</span><span class="p">(</span><span class="sh">'</span><span class="s">both</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">yaxis</span><span class="p">.</span><span class="nf">set_ticks_position</span><span class="p">(</span><span class="sh">'</span><span class="s">both</span><span class="sh">'</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">.</span><span class="nf">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">ax</span><span class="p">.</span><span class="nf">plot</span><span class="p">(</span><span class="n">Line2</span><span class="p">.</span><span class="n">y</span><span class="o">/</span><span class="n">d</span><span class="p">,</span> <span class="n">Line2</span><span class="p">.</span><span class="n">UMean_0</span><span class="o">/</span><span class="n">Ub</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="sa">r</span><span class="sh">'</span><span class="s">$x/d = 4$</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="nf">plot</span><span class="p">(</span><span class="n">Line3</span><span class="p">.</span><span class="n">y</span><span class="o">/</span><span class="n">d</span><span class="p">,</span> <span class="n">Line3</span><span class="p">.</span><span class="n">UMean_0</span><span class="o">/</span><span class="n">Ub</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="sa">r</span><span class="sh">'</span><span class="s">$x/d = 8$</span><span class="sh">'</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">.</span><span class="nf">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="sh">'</span><span class="s">$\overline{u}/U_b$</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="nf">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="sh">'</span><span class="s">$y/d$</span><span class="sh">'</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">.</span><span class="n">xaxis</span><span class="p">.</span><span class="nf">set_tick_params</span><span class="p">(</span><span class="n">direction</span><span class="o">=</span><span class="sh">'</span><span class="s">in</span><span class="sh">'</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="sh">'</span><span class="s">both</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">yaxis</span><span class="p">.</span><span class="nf">set_tick_params</span><span class="p">(</span><span class="n">direction</span><span class="o">=</span><span class="sh">'</span><span class="s">in</span><span class="sh">'</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="sh">'</span><span class="s">both</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">xaxis</span><span class="p">.</span><span class="nf">set_ticks_position</span><span class="p">(</span><span class="sh">'</span><span class="s">both</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">yaxis</span><span class="p">.</span><span class="nf">set_ticks_position</span><span class="p">(</span><span class="sh">'</span><span class="s">both</span><span class="sh">'</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">.</span><span class="nf">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="sh">'</span><span class="s">best</span><span class="sh">'</span><span class="p">,</span> <span class="n">frameon</span> <span class="o">=</span> <span class="bp">False</span><span class="p">)</span> <span class="c1"># or 'best', 'upper right', etc
+</span>
+<span class="n">ax</span><span class="p">.</span><span class="nf">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="nf">savefig</span><span class="p">(</span><span class="n">save_path</span> <span class="o">+</span> <span class="sh">'</span><span class="s">Velocity_Plots.jpeg</span><span class="sh">'</span><span class="p">,</span> <span class="n">dpi</span> <span class="o">=</span> <span class="mi">300</span><span class="p">,</span> <span class="n">bbox_inches</span> <span class="o">=</span> <span class="sh">'</span><span class="s">tight</span><span class="sh">'</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span>
+</code></pre></div></div> <p><strong>Why opt for this method?</strong> This method of extracting data is a staple in my daily workflow, especially during extensive simulations where regular check-ins on field development are essential. Using the <code class="language-plaintext highlighter-rouge">MultipleLine</code> dictionary post-simulation allows me to swiftly extract the required data without relying on Paraview or VisIt. By simply augmenting this dictionary with as many lines as necessary, I efficiently extract the desired data. When you’re clear on the data needed and its source, this utility proves to be the quickest route from extraction to visualization.</p> <h2 id="computing-fluctuating-field-and-vorticity">Computing fluctuating field and vorticity</h2> <p>In the previous example, we explored extracting existing data along specified lines. Now, let’s delve into calculating entirely new fields. In this instance, we’ll compute two fields: the fluctuating velocity field and the vorticity field. To achieve this, we’ll leverage the solver-run post-processing utility. Let’s begin with computing the vorticity, which can be accomplished with the following command:</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pimpleFoam <span class="nt">-postProcess</span> <span class="nt">-func</span> vorticity <span class="nt">-field</span> <span class="s2">"(U)"</span>
+</code></pre></div></div> <p>Upon execution, this command computes the vorticity using the velocity field (duh!!!) and writes the field out in the time directory under the name <code class="language-plaintext highlighter-rouge">vorticity</code>.</p> <p>Now, let’s move on to calculating the fluctuating velocity fields. This is achieved by subtracting the mean velocity from the instantaneous velocity. However, attempting to perform this operation using the solver-run post-processing command <code class="language-plaintext highlighter-rouge">pimpleFoam -postProcess -func "subtract(U, UMean)"</code> may lead to a common error. The error typically encountered is as follows:</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">--</span><span class="o">&gt;</span> FOAM FATAL ERROR: <span class="o">(</span>openfoam-2312<span class="o">)</span>
+
+    failed lookup of UMean <span class="o">(</span>objectRegistry region0<span class="o">)</span>
+    available objects of <span class="nb">type </span>volVectorField:
+3<span class="o">(</span>U_0 U U_0_0<span class="o">)</span>
+
+
+    From const Type&amp; Foam::objectRegistry::lookupObject<span class="o">(</span>const Foam::word&amp;, bool<span class="o">)</span> const <span class="o">[</span>with Type <span class="o">=</span> Foam::GeometricField&lt;Foam::Vector&lt;double&gt;, Foam::fvPatchField, Foam::volMesh&gt;]
+    <span class="k">in </span>file /home/goswami/OpenFOAM/OpenFOAM-v2312/src/OpenFOAM/lnInclude/objectRegistryTemplates.C at line 628.
+
+FOAM exiting
+</code></pre></div></div> <p>Here’s a quick debugging tip in OpenFOAM: <strong>Always read the error message carefully</strong>. In this case, the error indicates that the <code class="language-plaintext highlighter-rouge">UMean</code> field is not available in the <code class="language-plaintext highlighter-rouge">objectRegistry</code>, listing the available fields as <code class="language-plaintext highlighter-rouge">3(U_0 U U_0_0)</code>. Essentially, this means that the <code class="language-plaintext highlighter-rouge">UMean</code> field isn’t accessible to the <code class="language-plaintext highlighter-rouge">objectRegistry</code> because it’s generated by a function object during runtime. The solver-based post-processing command will only work in case of fields available in the <code class="language-plaintext highlighter-rouge">objectRegistry</code>. To inspect what is available in the <code class="language-plaintext highlighter-rouge">objectRegistry</code>, you can use the following command:</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Available objects <span class="k">in </span>database:
+
+24
+<span class="o">(</span>
+MRFProperties
+U
+U_0
+U_0_0
+boundary
+cellZones
+data
+faceZones
+faces
+fvOptions
+fvSchemes
+fvSolution
+neighbour
+nu
+owner
+p
+phi
+phi_0
+phi_0_0
+pointZones
+points
+solutionControl
+transportProperties
+turbulenceProperties
+<span class="o">)</span>
+</code></pre></div></div> <p>This scenario arises whenever a field is generated by a function object during runtime. In such cases, the standard <code class="language-plaintext highlighter-rouge">postProcess</code> utility should be used, like so:</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>postProcess <span class="nt">-func</span> <span class="s2">"subtract(U, UMean)"</span>
+</code></pre></div></div> <p>Executing this command will generate a file named <code class="language-plaintext highlighter-rouge">subtract(U,UMean)</code> within the time directories.</p> <p><strong>Why opt for this method?</strong> For the sake of streamlined data processing. By incorporating these commands into a script, particularly useful when working on a computing cluster, you can efficiently obtain ready-to-post-process fields. This eliminates the need to generate these fields manually in software like Paraview or Tecplot, simplifying your workflow significantly.</p> <h2 id="extracting-surfaces-and-visualizing-the-field">Extracting surfaces and visualizing the field</h2> <p>Now that we’ve computed the vorticity and fluctuating velocity fields, let’s proceed to visualize them in Python. To achieve this, I’ll utilize the <code class="language-plaintext highlighter-rouge">surfaces</code> function object executed through the command-line. The <code class="language-plaintext highlighter-rouge">surfaces</code> function object samples field values on surfaces and writes the results to a file using the selected output file format. To begin, we’ll create a file named <code class="language-plaintext highlighter-rouge">surfaces</code> in the <code class="language-plaintext highlighter-rouge">system</code> directory. This file will contain the <code class="language-plaintext highlighter-rouge">surfaces</code> function object, extracting a z-normal surface at the span-wise center of the domain. Below is an example of such a file:</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+/<span class="k">*</span><span class="nt">--------------------------------</span><span class="k">*</span>- C++ -<span class="k">*</span><span class="nt">----------------------------------</span><span class="k">*</span><span class="se">\</span>
+  <span class="o">=========</span>                 |
+  <span class="se">\\</span>      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   <span class="se">\\</span>    /   O peration     |
+    <span class="se">\\</span>  /    A nd           | Web:      www.OpenFOAM.com
+     <span class="se">\\</span>/     M anipulation  |
+<span class="nt">-------------------------------------------------------------------------------</span>
+Description
+    Writes out values of fields from cells nearest to specified locations.
+
+<span class="se">\*</span><span class="nt">---------------------------------------------------------------------------</span><span class="k">*</span>/
+surfaces
+<span class="o">{</span>
+    <span class="nb">type            </span>surfaces<span class="p">;</span>
+    libs            <span class="o">(</span><span class="s2">"libsampling.so"</span><span class="o">)</span><span class="p">;</span>
+    writeControl   	timeStep<span class="p">;</span>
+    writeInterval   10<span class="p">;</span>
+
+    surfaceFormat   vtk<span class="p">;</span>
+	
+	formatOptions
+	<span class="o">{</span>
+		vtk
+		<span class="o">{</span>
+			legacy <span class="nb">true</span><span class="p">;</span>
+			format ascii<span class="p">;</span>
+		<span class="o">}</span> 
+	<span class="o">}</span>
+	
+    fields          <span class="o">(</span>p U UMean vorticity subtract<span class="o">(</span>U, UMean<span class="o">))</span><span class="p">;</span>
+
+    interpolationScheme cellPoint<span class="p">;</span>
+
+    surfaces
+    <span class="o">{</span>
+        zNormal
+        <span class="o">{</span>
+            <span class="nb">type        </span>cuttingPlane<span class="p">;</span>
+            point       <span class="o">(</span>0 0 0<span class="o">)</span><span class="p">;</span>
+            normal      <span class="o">(</span>0 0 1<span class="o">)</span><span class="p">;</span>
+            interpolate <span class="nb">true</span><span class="p">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span><span class="p">;</span>
+<span class="o">}</span><span class="p">;</span>
+// <span class="k">*************************************************************************</span> //
+</code></pre></div></div> <p>Now, let’s proceed to extract the data using the <code class="language-plaintext highlighter-rouge">postProcess</code> utility with the command:</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>postProcess <span class="nt">-func</span> surfaces
+</code></pre></div></div> <p>Executing this command will generate a file named <code class="language-plaintext highlighter-rouge">surfaces</code> within the <code class="language-plaintext highlighter-rouge">postProcessing</code> directory, containing the surface field in a vtk file, as shown below:</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>surfaces/
+└── 4996.9
+    └── zNormal.vtk
+</code></pre></div></div> <p>This vtk file can be readily opened in Paraview or VisIt for visualization. However, the focus of this article is to visualize these fields in Python using the PyVista module. PyVista is a powerful tool for 3D data visualization, serving as an interface for the Visualization Toolkit (VTK). With PyVista, one can easily read and extract data from a vtk file. For this demonstration, I highly recommend using a Jupyter Notebook for ease of navigation between sets of codes. Let’s start by importing the module, in addition to the ones before:</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">pyvista</span> <span class="k">as</span> <span class="n">pv</span>
+</code></pre></div></div> <p>Let’s set the path variables to the case and the required files:</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">### set paths
+</span><span class="n">Path</span> <span class="o">=</span> <span class="sh">'</span><span class="s">E:/4_Tutorials/Cylinder_DNS/postProcessing/</span><span class="sh">'</span>
+<span class="n">save_path</span> <span class="o">=</span> <span class="sh">'</span><span class="s">E:/4_Tutorials/Cylinder_DNS/</span><span class="sh">'</span>
+<span class="n">surfaces</span> <span class="o">=</span> <span class="sh">'</span><span class="s">surfaces/4996.9/</span><span class="sh">'</span> <span class="c1">## specify latestTime folder
+</span>
+<span class="c1">### extract files
+</span><span class="n">Files</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="nf">listdir</span><span class="p">(</span><span class="n">Path</span> <span class="o">+</span> <span class="n">surfaces</span><span class="p">)</span>
+</code></pre></div></div> <p>Now, read the vtk file <code class="language-plaintext highlighter-rouge">zNormal.vtk</code> using the PyVista module and extract the coordinate data:</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Data</span> <span class="o">=</span> <span class="n">pv</span><span class="p">.</span><span class="nf">read</span><span class="p">(</span><span class="n">Path</span> <span class="o">+</span> <span class="n">surfaces</span> <span class="o">+</span> <span class="n">Files</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">grid</span> <span class="o">=</span> <span class="n">Data</span><span class="p">.</span><span class="n">points</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">grid</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">grid</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">grid</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">rows</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">shape</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sh">'</span><span class="s">rows = </span><span class="sh">'</span><span class="p">,</span> <span class="n">rows</span><span class="p">,</span> <span class="sh">'</span><span class="s">columns = </span><span class="sh">'</span><span class="p">,</span> <span class="n">columns</span><span class="p">)</span>
+</code></pre></div></div> <p>By printing out the array names from this <code class="language-plaintext highlighter-rouge">Data</code> variable, one can simply list all the available fields within this vtk file:</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">print</span><span class="p">(</span><span class="n">Data</span><span class="p">.</span><span class="n">array_names</span><span class="p">)</span>
+<span class="c1">### Output
+### ['TimeValue', 'p', 'U', 'UMean', 'fluctuations', 'vorticity']
+</span></code></pre></div></div> <p>At this point, let’s extract the point data and print out their sizes to find the number of components within a field. Fields such as velocity, vorticity, and fluctuations will have three components:</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">vorticity</span> <span class="o">=</span> <span class="n">Data</span><span class="p">.</span><span class="n">point_data</span><span class="p">[</span><span class="sh">'</span><span class="s">vorticity</span><span class="sh">'</span><span class="p">]</span>
+<span class="n">fluctuations</span> <span class="o">=</span> <span class="n">Data</span><span class="p">.</span><span class="n">point_data</span><span class="p">[</span><span class="sh">'</span><span class="s">fluctuations</span><span class="sh">'</span><span class="p">]</span>
+<span class="n">velocity</span> <span class="o">=</span> <span class="n">Data</span><span class="p">.</span><span class="n">point_data</span><span class="p">[</span><span class="sh">'</span><span class="s">U</span><span class="sh">'</span><span class="p">]</span>
+<span class="n">pressure</span> <span class="o">=</span> <span class="n">Data</span><span class="p">.</span><span class="n">point_data</span><span class="p">[</span><span class="sh">'</span><span class="s">p</span><span class="sh">'</span><span class="p">]</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="n">vorticity</span><span class="p">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">fluctuations</span><span class="p">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">velocity</span><span class="p">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">pressure</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="c1">### Output 
+### (9260, 3) (9260, 3) (9260, 3) (9260,)
+</span></code></pre></div></div> <p>Finally, let’s plot the extracted data using a <code class="language-plaintext highlighter-rouge">tricontourf</code> plot in matplotlib.</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># circle1 = plt.Circle((0, 0), 0.05, ec='k', color='grey')
+</span><span class="n">Circle1</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nc">Circle</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mf">0.6</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="sh">'</span><span class="s">k</span><span class="sh">'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="sh">'</span><span class="s">white</span><span class="sh">'</span><span class="p">)</span>
+<span class="c1"># Rect2 = plt.Rectangle((0, 0), 1, 1, ec='k', color='grey')
+</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">ax</span><span class="p">.</span><span class="nf">tricontourf</span><span class="p">(</span><span class="n">x</span><span class="o">/</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">y</span><span class="o">/</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">vorticity</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">d</span><span class="o">/</span><span class="n">Ub</span><span class="p">),</span> <span class="n">levels</span> <span class="o">=</span> <span class="mi">501</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">cmap</span> <span class="o">=</span> <span class="sh">'</span><span class="s">RdBu</span><span class="sh">'</span><span class="p">)</span>
+<span class="c1"># cb = fig.colorbar(p, ax=ax, shrink=0.8)
+</span><span class="n">m</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">cm</span><span class="p">.</span><span class="nc">ScalarMappable</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="sh">'</span><span class="s">RdBu</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">m</span><span class="p">.</span><span class="nf">set_array</span><span class="p">(</span><span class="n">vorticity</span><span class="p">[:,</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">m</span><span class="p">.</span><span class="nf">set_clim</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">colorbar</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">shrink</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="c1"># ax.quiver(x/0.01, y/0.01, U[:,0]/3.75, U[:,1]/3.75, scale=15)
+</span>
+<span class="n">ax</span><span class="p">.</span><span class="nf">add_patch</span><span class="p">(</span><span class="n">Circle1</span><span class="p">)</span>
+<span class="c1"># ax.axvline(0.1856, c='w', ls='--', lw=1)
+# ax.axvline(0.1856/2, c='w', ls='--', lw=1)
+</span><span class="n">ax</span><span class="p">.</span><span class="n">xaxis</span><span class="p">.</span><span class="nf">set_tick_params</span><span class="p">(</span><span class="n">direction</span><span class="o">=</span><span class="sh">'</span><span class="s">in</span><span class="sh">'</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="sh">'</span><span class="s">both</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">yaxis</span><span class="p">.</span><span class="nf">set_tick_params</span><span class="p">(</span><span class="n">direction</span><span class="o">=</span><span class="sh">'</span><span class="s">in</span><span class="sh">'</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="sh">'</span><span class="s">both</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">xaxis</span><span class="p">.</span><span class="nf">set_ticks_position</span><span class="p">(</span><span class="sh">'</span><span class="s">both</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">yaxis</span><span class="p">.</span><span class="nf">set_ticks_position</span><span class="p">(</span><span class="sh">'</span><span class="s">both</span><span class="sh">'</span><span class="p">)</span>
+<span class="c1"># ax.set_xscale('log')
+</span><span class="n">ax</span><span class="p">.</span><span class="nf">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="nf">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="c1"># ax.set_box_aspect(4/11)
+</span><span class="n">ax</span><span class="p">.</span><span class="nf">set_aspect</span><span class="p">(</span><span class="sh">'</span><span class="s">equal</span><span class="sh">'</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">.</span><span class="nf">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="sh">'</span><span class="s">$\bf x/d$</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="nf">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="sh">'</span><span class="s">$\bf y/d$</span><span class="sh">'</span><span class="p">)</span>
+<span class="c1"># ax.set_title(r'$\bf x/d = 1$')
+</span>
+<span class="c1"># plt.savefig(save_path + 'Mode2.jpeg', dpi = 300, bbox_inches = 'tight')
+</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span>
+</code></pre></div></div> <p>Behold, the figures generated by the script:</p> <figure> <img src="https://goswami-13.github.io/images/Blog10/UMean.jpeg" width="80%"> <img src="https://goswami-13.github.io/images/Blog10/UFluctuations.jpeg" width="80%"> <img src="https://goswami-13.github.io/images/Blog10/pressure.jpeg" width="80%"> <img src="https://goswami-13.github.io/images/Blog10/ZVort.jpeg" width="80%"> </figure> <p>As a final note, let’s explore the versatility of Python. Beyond static visualizations, Python empowers you to create dynamic presentations, including animations. Imagine capturing the mesmerizing dance of vortex shedding in motion. With Python, the possibilities are endless. So why not give it a try? Dive in, experiment, and unleash the full potential of Python for your fluid dynamics simulations. The world of dynamic visualizations awaits!</p> <figure> <img src="https://goswami-13.github.io/images/Blog10/Vorticity_gif.gif" width="80%"> </figure> <p><strong>Why opt for this method?</strong> Once again, simplicity reigns supreme. With Python and PyVista, visualizing the extracted surfaces is a breeze. But why opt for this method? Let me count the ways.</p> <ol> <li> <p>Ease of Use: Python combined with PyVista simplifies the visualization process, making it accessible to users of all skill levels.</p> </li> <li> <p>Scriptability: Harness the power of scripting to automate visualization tasks, saving time and effort in the long run.</p> </li> <li> <p>Customization: Tailor your plots to perfection with Python’s extensive libraries and matplotlib’s flexible customization options.</p> </li> <li> <p>Interactivity: Dive deeper into your data with interactive jupyter notebooks, allowing for real-time exploration and analysis.</p> </li> </ol> <p>In essence, this method offers not just visualization, but a seamless and dynamic experience, enhancing your understanding and insights into your data.</p> <p>And with that, we wrap up the trilogy of articles on OpenFOAM post-processing. It’s important to remember that post-processing should be simple and painless – a no-brainer, if you will. After all, the goal isn’t just to generate pretty pictures. In fluid mechanics and CFD, the true aim is to articulate your insights clearly and concisely. What you visualize is only as valuable as your ability to explain the underlying mechanics of physical processes.</p> <p>So, as you delve into the realm of computational fluid dynamics, keep in mind that CFD stands for Computational Fluid Dynamics, not Colorful Fluid Dynamics. Focus on understanding and communicating the essence of your simulations.</p> <p>Happy computing!!!</p> </d-article> <d-appendix> <d-footnote-list></d-footnote-list> <d-citation-list></d-citation-list> </d-appendix> <d-bibliography src="/al-folio/assets/bibliography/"></d-bibliography> <d-article> <h2 class="text-3xl font-semibold mb-4 mt-12">Enjoy Reading This Article?</h2> <p class="mb-2">Here are some more articles you might like to read next:</p> <li class="my-2"> <a class="text-pink-700 underline font-semibold hover:text-pink-800" href="/al-folio/posts/2025/06/blog-post-54/">Tabulating 6-DOF Motion Kinematics in OpenFOAM using Python</a> </li> <li class="my-2"> <a class="text-pink-700 underline font-semibold hover:text-pink-800" href="/al-folio/posts/2025/06/blog-post-53/">Setting Up Overset Mesh Cases in OpenFOAM Made Easy</a> </li> <li class="my-2"> <a class="text-pink-700 underline font-semibold hover:text-pink-800" href="/al-folio/posts/2025/06/blog-post-52/">An Introduction to Overset Mesh in OpenFOAM</a> </li> <li class="my-2"> <a class="text-pink-700 underline font-semibold hover:text-pink-800" href="/al-folio/posts/2025/05/blog-post-51/">Python Tools for Analyzing and Visualizing Mesh Motion Simulations</a> </li> <li class="my-2"> <a class="text-pink-700 underline font-semibold hover:text-pink-800" href="/al-folio/posts/2025/03/blog-post-50/">Simulating Pure Pitching and Heaving Motions in OpenFOAM</a> </li> <br> <br> </d-article> </div> <footer class="fixed-bottom" role="contentinfo"> <div class="container mt-0"> © Copyright 2025 Shubham Goswami, PhD. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a>. Photos from <a href="https://unsplash.com" target="_blank" rel="external nofollow noopener">Unsplash</a>. </div> </footer> <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> <script src="/al-folio/assets/js/bootstrap.bundle.min.js"></script> <script src="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/js/mdb.min.js" integrity="sha256-NdbiivsvWt7VYCt6hYNT3h/th9vSTL4EDWeGs5SN3DA=" crossorigin="anonymous"></script> <script src="/al-folio/assets/js/distillpub/overrides.js"></script> <script defer src="https://cdn.jsdelivr.net/npm/mermaid@10.7.0/dist/mermaid.min.js" integrity="sha256-TtLOdUA8mstPoO6sGvHIGx2ceXrrX4KgIItO06XOn8A=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/d3@7.8.5/dist/d3.min.js" integrity="sha256-1rA678n2xEx7x4cTZ5x4wpUCj6kUMZEZ5cxLSVSFWxw=" crossorigin="anonymous"></script> <script defer src="/al-folio/assets/js/mermaid-setup.js?38ca0a0126f7328d2d9a46bad640931f" type="text/javascript"></script> <script src="https://cdn.jsdelivr.net/npm/diff2html@3.4.47/bundles/js/diff2html-ui.min.js" integrity="sha256-eU2TVHX633T1o/bTQp6iIJByYJEtZThhF9bKz/DcbbY=" crossorigin="anonymous"></script> <script defer src="/al-folio/assets/js/diff2html-setup.js?80a6e52ce727518bbd3aed2bb6ba5601" type="text/javascript"></script> <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.js" integrity="sha256-MgH13bFTTNqsnuEoqNPBLDaqxjGH+lCpqrukmXc8Ppg=" crossorigin="anonymous"></script> <script defer src="/al-folio/assets/js/leaflet-setup.js?b6313931e203b924523e2d8b75fe8874" type="text/javascript"></script> <script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" integrity="sha256-0q+JdOlScWOHcunpUk21uab1jW7C1deBQARHtKMcaB4=" crossorigin="anonymous"></script> <script defer src="/al-folio/assets/js/chartjs-setup.js?183c5859923724fb1cb3c67593848e71" type="text/javascript"></script> <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js" integrity="sha256-QvgynZibb2U53SsVu98NggJXYqwRL7tg3FeyfXvPOUY=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/theme/dark-fresh-cut.js" integrity="sha256-sm6Ui9w41++ZCWmIWDLC18a6ki72FQpWDiYTDxEPXwU=" crossorigin="anonymous"></script> <script defer src="/al-folio/assets/js/echarts-setup.js?738178999630746a8d0cfc261fc47c2c" type="text/javascript"></script> <script defer src="https://cdn.jsdelivr.net/npm/vega@5.27.0/build/vega.min.js" integrity="sha256-Yot/cfgMMMpFwkp/5azR20Tfkt24PFqQ6IQS+80HIZs=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/vega-lite@5.16.3/build/vega-lite.min.js" integrity="sha256-TvBvIS5jUN4BSy009usRjNzjI1qRrHPYv7xVLJyjUyw=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/vega-embed@6.24.0/build/vega-embed.min.js" integrity="sha256-FPCJ9JYCC9AZSpvC/t/wHBX7ybueZhIqOMjpWqfl3DU=" crossorigin="anonymous"></script> <script defer src="/al-folio/assets/js/vega-setup.js?7c7bee055efe9312afc861b128fe5f36" type="text/javascript"></script> <script defer src="https://tikzjax.com/v1/tikzjax.js" integrity="sha256-+1qyucCXRZJrCg3lm3KxRt/7WXaYhBid4/1XJRHGB1E=" crossorigin="anonymous"></script> <script src="/al-folio/assets/js/typograms.js?062e75bede72543443762dc3fe36c7a5"></script> <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script> <script defer src="/al-folio/assets/js/zoom.js?85ddb88934d28b74e78031fd54cf8308"></script> <script src="/al-folio/assets/js/no_defer.js?2781658a0a2b13ed609542042a859126"></script> <script defer src="/al-folio/assets/js/common.js?e0514a05c5c95ac1a93a8dfd5249b92e"></script> <script defer src="/al-folio/assets/js/copy_code.js?c8a01c11a92744d44b093fc3bda915df" type="text/javascript"></script> <script defer src="/al-folio/assets/js/jupyter_new_tab.js?d9f17b6adc2311cbabd747f4538bb15f"></script> <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script> <script src="/al-folio/assets/js/mathjax-setup.js?a5bb4e6a542c546dd929b24b8b236dfd"></script> <script defer src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6" crossorigin="anonymous"></script> <script defer src="/al-folio/assets/js/progress-bar.js?2f30e0e6801ea8f5036fa66e1ab0a71a" type="text/javascript"></script> <script src="/al-folio/assets/js/vanilla-back-to-top.min.js?f40d453793ff4f64e238e420181a1d17"></script> <script>
+    addBackToTop();
+  </script> <script type="module" src="/al-folio/assets/js/search/ninja-keys.min.js?a3446f084dcaecc5f75aa1757d087dcf"></script> <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching"></ninja-keys> <script src="/al-folio/assets/js/search-setup.js?6c304f7b1992d4b60f7a07956e52f04a"></script> <script src="/al-folio/assets/js/search-data.js"></script> <script src="/al-folio/assets/js/shortcut-key.js?6f508d74becd347268a7f822bca7309d"></script> </body> </html>

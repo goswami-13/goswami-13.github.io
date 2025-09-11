@@ -1,0 +1,178 @@
+<!DOCTYPE html> <html> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title> Setting up PETSc in OpenFOAM | Shubham Goswami, PhD </title> <meta name="author" content="Shubham Goswami, PhD"> <meta name="description" content="Personal and professional website of Shubham Goswami, PhD. "> <link rel="stylesheet" href="/al-folio/assets/css/bootstrap.min.css?a4b3f509e79c54a512b890d73235ef04"> <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/css/mdb.min.css" integrity="sha256-jpjYvU3G3N6nrrBwXJoVEYI/0zw8htfFnhT9ljN3JJw=" crossorigin="anonymous"> <link defer rel="stylesheet" href="/al-folio/assets/css/academicons.min.css?f0b7046b84e425c55f3463ac249818f5"> <link defer rel="stylesheet" href="/al-folio/assets/css/scholar-icons.css?62b2ac103a88034e6882a5be5f3e2772"> <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap"> <link defer rel="stylesheet" href="/al-folio/assets/css/jekyll-pygments-themes-github.css?591dab5a4e56573bf4ef7fd332894c99" media="" id="highlight_theme_light"> <link rel="shortcut icon" href="data:image/svg+xml,&lt;svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22&gt;&lt;text%20y=%22.9em%22%20font-size=%2290%22&gt;%E2%9A%9B%EF%B8%8F&lt;/text&gt;&lt;/svg&gt;"> <link rel="stylesheet" href="/al-folio/assets/css/main.css?d41d8cd98f00b204e9800998ecf8427e"> <link rel="canonical" href="https://shubhamdgoswami.github.io/al-folio/posts/2024/01/blog-post-4/"> <script src="/al-folio/assets/js/theme.js?a81d82887dd692e91686b43de4542f18"></script> <link defer rel="stylesheet" href="/al-folio/assets/css/jekyll-pygments-themes-native.css?5847e5ed4a4568527aa6cfab446049ca" media="none" id="highlight_theme_dark"> <script>
+    initTheme();
+  </script> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.css" integrity="sha256-q9ba7o845pMPFU+zcAll8rv+gC+fSovKsOoNQ6cynuQ=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github.min.css" integrity="sha256-Oppd74ucMR5a5Dq96FxjEzGF7tTw2fZ/6ksAqDCM8GY=" crossorigin="anonymous" media="screen and (prefers-color-scheme: light)"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github-dark.min.css" integrity="sha256-nyCNAiECsdDHrr/s2OQsp5l9XeY2ZJ0rMepjCT2AkBk=" crossorigin="anonymous" media="screen and (prefers-color-scheme: dark)"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/diff2html@3.4.47/bundles/css/diff2html.min.css" integrity="sha256-IMBK4VNZp0ivwefSn51bswdsrhk0HoMTLc2GqFHFBXg=" crossorigin="anonymous"> <link defer rel="stylesheet" type="text/css" href="https://tikzjax.com/v1/fonts.css"> <script src="/al-folio/assets/js/distillpub/template.v2.js"></script> <script src="/al-folio/assets/js/distillpub/transforms.v2.js"></script> <style type="text/css">.fake-img{background:#bbb;border:1px solid rgba(0,0,0,0.1);box-shadow:0 0 4px rgba(0,0,0,0.1);margin-bottom:12px}.fake-img p{font-family:monospace;color:white;text-align:left;margin:12px 0;text-align:center;font-size:16px}</style> </head> <body> <d-front-matter> <script async type="text/json">
+      {
+            "title": "Setting up PETSc in OpenFOAM",
+            "description": "",
+            "published": "January 24, 2024",
+            "authors": [
+              
+            ],
+            "katex": {
+              "delimiters": [
+                {
+                  "left": "$",
+                  "right": "$",
+                  "display": false
+                },
+                {
+                  "left": "$$",
+                  "right": "$$",
+                  "display": true
+                }
+              ]
+            }
+          }
+    </script> </d-front-matter> <header> <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation"> <div class="container"> <a class="navbar-brand title font-weight-lighter" href="/al-folio/"> <span class="font-weight-bold">Shubham</span> Goswami, PhD </a> <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar top-bar"></span> <span class="icon-bar middle-bar"></span> <span class="icon-bar bottom-bar"></span> </button> <div class="collapse navbar-collapse text-right" id="navbarNav"> <ul class="navbar-nav ml-auto flex-nowrap"> <li class="nav-item "> <a class="nav-link" href="/al-folio/">About </a> </li> <li class="nav-item "> <a class="nav-link" href="/al-folio/cv/">CV </a> </li> <li class="nav-item "> <a class="nav-link" href="/al-folio/blog/">Guides </a> </li> <li class="nav-item "> <a class="nav-link" href="/al-folio/publications/">Publications </a> </li> <li class="nav-item "> <a class="nav-link" href="/al-folio/teaching/">Teaching </a> </li> <li class="nav-item"> <button id="search-toggle" title="Search" onclick="openSearchModal()"> <span class="nav-link">ctrl k <i class="ti ti-search"></i></span> </button> </li> <li class="toggle-container"> <button id="light-toggle" title="Change theme"> <i class="ti ti-sun-moon" id="light-toggle-system"></i> <i class="ti ti-moon-filled" id="light-toggle-dark"></i> <i class="ti ti-sun-filled" id="light-toggle-light"></i> </button> </li> </ul> </div> </div> </nav> <progress id="progress" value="0"> <div class="progress-container"> <span class="progress-bar"></span> </div> </progress> </header> <div class="post distill"> <d-title> <h1>Setting up PETSc in OpenFOAM</h1> <p></p> </d-title> <d-article> <d-contents> <nav class="l-text figcaption"> <h3>Contents</h3> </nav> </d-contents> <p>Guide for coupling PETSc into OpenFOAM.</p> <figure> <img src="https://goswami-13.github.io/images/PETSC.png" width="90%"> </figure> <p><a href="https://petsc.org/release/" rel="external nofollow noopener" target="_blank">PETSc</a>, also known as Portable, Extensible Toolkit for Scientific Computation, stands out as a powerful tool designed for the scalable (parallel) resolution of scientific applications governed by partial differential equations (PDEs). Recognized as the world’s most widely used parallel numerical software library for partial differential equations and sparse matrix computations, PETSc plays a pivotal role in tackling linear and nonlinear systems of equations stemming from discretizations of Partial Differential Equations. At the core of PETSc’s versatility is its organizational structure around mathematical concepts tailored for solving complex systems. This numerical library has found extensive use across various domains, and OpenFOAM is no exception. Within the realm of OpenFOAM, a dedicated library named petsc4Foam comes into play. This library introduces a solver that seamlessly integrates PETSc and its external dependencies, such as <a href="https://computing.llnl.gov/projects/hypre-scalable-linear-solvers-multigrid-methods" rel="external nofollow noopener" target="_blank">HYPRE</a>, into diverse OpenFOAM simulations. petsc4Foam opens up a repertoire of solvers and preconditioners available not only in PETSc but also in its external libraries, like HYPRE.</p> <h2 id="compilation-steps-for-petsc">Compilation steps for PETSc</h2> <p>Let’s walk through the steps to build or compile PETSc in OpenFOAM, a process applicable to both <strong>Ubuntu</strong> and <strong>Windows Subsystem for Linux (WSL)</strong>:</p> <ol> <li>Start by sourcing your OpenFOAM environment. For instance: <div class="language-bash highlighter-rouge"> <div class="highlight"><pre class="highlight"><code><span class="nb">source</span> ~/OpenFOAM/OpenFOAM-v2312/etc/bashrc
+</code></pre></div> </div> </li> <li>Navigate to the ThirdParty folder: <div class="language-bash highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>foam
+<span class="nb">cd</span> <span class="nv">$WM_THIRD_PARTY_DIR</span>
+</code></pre></div> </div> </li> <li>Check if PETSc dependencies are present: <div class="language-bash highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>./makePETSC
+</code></pre></div> </div> <p>This should prompt a warning indicating missing sources for PETSc. Note the version, e.g., <code class="language-plaintext highlighter-rouge">petsc-x.xx.x</code>.</p> <div class="language-bash highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>   Missing sources: <span class="s1">'petsc-x.xx.x'</span>
+   Possible download locations <span class="k">for </span>PETSC :
+   https://www.mcs.anl.gov/petsc/
+   https://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-x.xx.x.tar.gz
+</code></pre></div> </div> <p>Here, <code class="language-plaintext highlighter-rouge">petsc-x.xx.x</code> is basically the version of PETSc, like for example <code class="language-plaintext highlighter-rouge">petsc-3.19.2</code>. In my case I will use the latest version, which is <code class="language-plaintext highlighter-rouge">petsc-3.19.2</code>.</p> </li> <li>Download the PETSc source files using the provided link in the warning of the last step, just swap in the version of PETSc you require: <div class="language-bash highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>wget https://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-3.19.2.tar.gz
+</code></pre></div> </div> <p>This will download a file named <code class="language-plaintext highlighter-rouge">petsc-lite-3.19.2.tar.gz</code>. You will need to first un-tar or un-zip the file by using the command</p> <div class="language-bash highlighter-rouge"> <div class="highlight"><pre class="highlight"><code><span class="nb">tar</span> <span class="nt">-xzvf</span> petsc-lite-3.19.2.tar.gz
+</code></pre></div> </div> <p>This step should generate a folder named <code class="language-plaintext highlighter-rouge">petsc-3.19.2</code></p> </li> <li>Install essential packages - BLAS and LAPACK: <div class="language-bash highlighter-rouge"> <div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get <span class="nb">install </span>libblas-dev liblapack-dev
+</code></pre></div> </div> </li> <li>Build PETSc: <div class="language-bash highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>./makePETSC
+</code></pre></div> </div> <p>This step will take about 5 minutes, depending on your system configuration, and show up as follows</p> <div class="language-bash highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>+ ./configure <span class="nt">--prefix</span><span class="o">=</span>/home/ubuntu-students/OpenFOAM/ThirdParty-v2312/platforms/linux64GccDPInt32/petsc-3.19.2 <span class="nt">--PETSC_DIR</span><span class="o">=</span>/home/ubuntu-students/OpenFOAM/ThirdParty-v2312/petsc-3.19.2 <span class="nt">--with-petsc-arch</span><span class="o">=</span>DPInt32 <span class="nt">--with-clanguage</span><span class="o">=</span>C <span class="nt">--with-fc</span><span class="o">=</span>0 <span class="nt">--with-x</span><span class="o">=</span>0 <span class="nt">--with-cc</span><span class="o">=</span>/usr/bin/mpicc <span class="nt">--with-cxx</span><span class="o">=</span>/usr/bin/mpicxx <span class="nt">--with-debugging</span><span class="o">=</span>0 <span class="nt">--COPTFLAGS</span><span class="o">=</span><span class="nt">-O3</span> <span class="nt">--CXXOPTFLAGS</span><span class="o">=</span><span class="nt">-O3</span> <span class="nt">--with-shared-libraries</span> <span class="nt">--with-64-bit-indices</span><span class="o">=</span>0 <span class="nt">--with-precision</span><span class="o">=</span>double <span class="nt">--download-hypre</span>
+ Using python3 <span class="k">for </span>Python
+ <span class="o">===============================================================================</span>
+                   Configuring PETSc to compile on your system
+ <span class="o">===============================================================================</span>
+ <span class="o">===============================================================================</span>
+       Trying to download git://https://github.com/hypre-space/hypre <span class="k">for </span>HYPRE
+ <span class="o">===============================================================================</span>
+ <span class="o">===============================================================================</span>
+       Running configure on HYPRE<span class="p">;</span> this may take several minutes
+ <span class="o">===============================================================================</span>
+ <span class="o">===============================================================================</span>
+       Running make on HYPRE<span class="p">;</span> this may take several minutes
+ <span class="o">===============================================================================</span>
+</code></pre></div> </div> </li> <li>If not loaded automatically, set up PETSc environment: <div class="language-bash highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>  <span class="nb">export </span><span class="nv">PETSC_DIR</span><span class="o">=</span>~/OpenFOAM/ThirdParty-v2312/petsc-3.19.2/
+  <span class="nb">export </span><span class="nv">PETSC_ARCH</span><span class="o">=</span>DPInt32
+  <span class="nb">export </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="nv">$PETSC_DIR</span>/<span class="nv">$PETSC_ARCH</span>/lib:<span class="nv">$LD_LIBRARY_PATH</span>
+</code></pre></div> </div> </li> <li>Navigate to the OpenFOAM working directory and build petsc4Foam: <div class="language-bash highlighter-rouge"> <div class="highlight"><pre class="highlight"><code> foam <span class="c"># navigate to working directory</span>
+ <span class="nb">cd </span>modules/external-solver  <span class="c"># navigate to the external_solver directory</span>
+ ./Allwmake <span class="nt">-prefix</span><span class="o">=</span>openfoam <span class="c"># Install everything in FOAM_LIBBIN</span>
+</code></pre></div> </div> </li> <li>Verify PETSc libraries can be found and loaded: <div class="language-bash highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>     foamHasLibrary <span class="nt">-verbose</span> petscFoam
+</code></pre></div> </div> <p>The output of this command should be <code class="language-plaintext highlighter-rouge">Can load "petscFoam"</code>.</p> </li> <li>Before running any simulations using PETSc, it’s essential to set up the PETSc environment. This can be done by executing the commands provided in Step-7 or by using the following command: <div class="language-bash highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>  <span class="nb">eval</span> <span class="si">$(</span>foamEtcFile <span class="nt">-sh</span> <span class="nt">-config</span> petsc <span class="nt">--</span> <span class="nt">-force</span><span class="si">)</span>
+</code></pre></div> </div> </li> </ol> <h2 id="first-steps">First Steps</h2> <p>Once the PETSc library seamlessly integrates into OpenFOAM, you can validate the installation by running a tutorial case found in the <code class="language-plaintext highlighter-rouge">external-solver</code> directory. Here are the steps to execute the case:</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c"># Navigate to the tutorial directory</span>
+  <span class="nb">cd</span> ~/OpenFOAM/OpenFOAM-v2312/modules/external-solver/tutorials/incompressible/simpleFoam/pitzDaily
+  <span class="c"># run the case using given run files</span>
+  ./Allrun
+</code></pre></div></div> <p>The output of this process should resemble the following:</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  Copying incompressible/simpleFoam/pitzDaily -&gt; run/
+  Add libs <span class="o">(</span>petscFoam<span class="o">)</span> to controlDict
+  Rename fvSolution and relink to fvSolution-petsc
+  Running blockMesh on /home/goswami/OpenFOAM/OpenFOAM-v2312/modules/external-solver/tutorials/incompressible/simpleFoam/pitzDaily/run
+  Running simpleFoam on /home/goswami/OpenFOAM/OpenFOAM-v2312/modules/external-solver/tutorials/incompressible/simpleFoam/pitzDaily/run
+</code></pre></div></div> <p>To ensure that the tutorial runs the <code class="language-plaintext highlighter-rouge">pitzDaily</code> case using <code class="language-plaintext highlighter-rouge">petsc</code> solvers, perform the following check:</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nb">cd </span>run/
+  <span class="nb">tail</span> <span class="nt">-n</span> 20 log.simpleFoam
+</code></pre></div></div> <p>The output should display:</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  Time <span class="o">=</span> 281
+
+  PETSc-bicg:  Solving <span class="k">for </span>Ux, Initial residual <span class="o">=</span> 0.000144417, Final residual <span class="o">=</span> 7.09155e-06, No Iterations 2
+  PETSc-bicg:  Solving <span class="k">for </span>Uy, Initial residual <span class="o">=</span> 0.00099692, Final residual <span class="o">=</span> 6.16609e-05, No Iterations 2
+  PETSc-cg:  Solving <span class="k">for </span>p, Initial residual <span class="o">=</span> 0.000780479, Final residual <span class="o">=</span> 7.3097e-05, No Iterations 68
+  <span class="nb">time </span>step continuity errors : <span class="nb">sum local</span> <span class="o">=</span> 0.0034787, global <span class="o">=</span> <span class="nt">-9</span>.27705e-05, cumulative <span class="o">=</span> 0.676227
+  PETSc-bicg:  Solving <span class="k">for </span>epsilon, Initial residual <span class="o">=</span> 0.000114612, Final residual <span class="o">=</span> 4.76639e-06, No Iterations 2
+  PETSc-bicg:  Solving <span class="k">for </span>k, Initial residual <span class="o">=</span> 0.000203968, Final residual <span class="o">=</span> 1.19536e-05, No Iterations 2
+  ExecutionTime <span class="o">=</span> 9.61 s  ClockTime <span class="o">=</span> 10 s
+
+
+  SIMPLE solution converged <span class="k">in </span>281 iterations
+
+  streamLine streamlines write:
+      seeded 10 particles
+      Tracks:10
+      Total samples:10885
+  End
+
+  Finalizing PETSc
+</code></pre></div></div> <p>Here, you can observe that velocity, k, and epsilon are solved using the <code class="language-plaintext highlighter-rouge">PETSc-bicg</code> solver, employing the Bi-conjugate Gradient method. The pressure is solved using <code class="language-plaintext highlighter-rouge">PETSc-cg</code>, utilizing the Preconditioned Conjugate Gradient (PCG) iterative method.</p> <h2 id="how-to-use-petsc-in-your-simulations-">How to use PETSc in your simulations ?</h2> <p>To use PETSc solvers in your simulations, make two essential modifications:</p> <ol> <li>Add the PETSc library to <code class="language-plaintext highlighter-rouge">controlDict</code>. Open your <code class="language-plaintext highlighter-rouge">controlDict</code> file and insert the following lines above the ‘application’ keyword: <div class="language-bash highlighter-rouge"> <div class="highlight"><pre class="highlight"><code> libs
+ <span class="o">(</span>
+ <span class="s2">"petscFoam"</span>
+ <span class="o">)</span><span class="p">;</span>
+</code></pre></div> </div> </li> <li>Edit your <code class="language-plaintext highlighter-rouge">fvSolution</code> file and set the solver and preconditioner names in any solver to <code class="language-plaintext highlighter-rouge">petsc</code>. For instance, the solvers in the <code class="language-plaintext highlighter-rouge">fvSolution</code> file for the tutorial case executed in the last step should be configured as follows:” <div class="language-bash highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>   p
+   <span class="o">{</span>
+       solver petsc<span class="p">;</span>
+
+       petsc
+       <span class="o">{</span>
+           options
+           <span class="o">{</span>
+               ksp_type  cg<span class="p">;</span>
+               ksp_cg_single_reduction  <span class="nb">true</span><span class="p">;</span>
+               ksp_norm_type none<span class="p">;</span>
+
+       // With or without hypre
+       <span class="c">#if 0</span>
+                       pc_type  hypre<span class="p">;</span>
+                       pc_hypre_type boomeramg<span class="p">;</span>
+                       pc_hypre_boomeramg_max_iter <span class="s2">"1"</span><span class="p">;</span>
+                       pc_hypre_boomeramg_strong_threshold <span class="s2">"0.25"</span><span class="p">;</span>
+                       pc_hypre_boomeramg_grid_sweeps_up <span class="s2">"1"</span><span class="p">;</span>
+                       pc_hypre_boomeramg_grid_sweeps_down <span class="s2">"1"</span><span class="p">;</span>
+                       pc_hypre_boomeramg_agg_nl <span class="s2">"1"</span><span class="p">;</span>
+                       pc_hypre_boomeramg_agg_num_paths <span class="s2">"1"</span><span class="p">;</span>
+                       pc_hypre_boomeramg_max_levels <span class="s2">"25"</span><span class="p">;</span>
+                       pc_hypre_boomeramg_coarsen_type HMIS<span class="p">;</span>
+                       pc_hypre_boomeramg_interp_type ext+i<span class="p">;</span>
+                       pc_hypre_boomeramg_P_max <span class="s2">"1"</span><span class="p">;</span>
+                       pc_hypre_boomeramg_truncfactor <span class="s2">"0.3"</span><span class="p">;</span>
+       <span class="c">#else</span>
+                       pc_type bjacobi<span class="p">;</span>
+                       sub_pc_type ilu<span class="p">;</span>
+       <span class="c">#endif</span>
+           <span class="o">}</span>
+
+           caching
+           <span class="o">{</span>
+               matrix
+               <span class="o">{</span>
+                   update always<span class="p">;</span>
+               <span class="o">}</span>
+
+               preconditioner
+               <span class="o">{</span>
+                   update always<span class="p">;</span>
+               <span class="o">}</span>
+           <span class="o">}</span>
+       <span class="o">}</span>
+
+       tolerance       1e-06<span class="p">;</span>
+       relTol          0.1<span class="p">;</span>
+   <span class="o">}</span>
+
+ <span class="s2">"(U|k|epsilon|omega|f|v2)"</span>
+ <span class="o">{</span>
+     solver petsc<span class="p">;</span>
+
+     petsc
+     <span class="o">{</span>
+         options
+         <span class="o">{</span>
+             ksp_type bicg<span class="p">;</span>
+             pc_type bjacobi<span class="p">;</span>
+             sub_pc_type ilu<span class="p">;</span>
+         <span class="o">}</span>
+
+         caching
+         <span class="o">{</span>
+             matrix
+             <span class="o">{</span>
+                 update always<span class="p">;</span>
+             <span class="o">}</span>
+
+             preconditioner
+             <span class="o">{</span>
+                 update always<span class="p">;</span>
+             <span class="o">}</span>
+         <span class="o">}</span>
+     <span class="o">}</span>
+
+     tolerance       1e-05<span class="p">;</span>
+     relTol          0.1<span class="p">;</span>
+ <span class="o">}</span>
+</code></pre></div> </div> </li> </ol> <h2 id="why-use-petsc-in-your-simulations-">Why use PETSc in your simulations ?</h2> <p>Ideally, when running OpenFOAM simulations, I’ll utilize a High-Performance Computing (HPC) cluster or, in simpler terms, a supercomputer. Most certainly, I’ll run my simulations in parallel, utilizing multiple cores. In OpenFOAM, parallel computation involves mesh and fields decomposition, parallel application execution, and post-processing of the decomposed case. The parallel execution utilizes the openMPI implementation of the Message Passing Interface (MPI). While OpenFOAM’s parallel performance is already commendable, there’s room for improvement. This is where PETSc steps in. PETSc offers exceptional scalability, allowing simulations to scale up to the order of millions of cores. Additionally, PETSc solvers outperform standard OpenFOAM solvers when simulations involve a large number of parallel cores.</p> <p>For in-depth insights into PETSc, including performance, scalability, and metrics, refer to this informative <a href="https://prace-ri.eu/wp-content/uploads/WP294-PETSc4FOAM-A-Library-to-plug-in-PETSc-into-the-OpenFOAM-Framework.pdf" rel="external nofollow noopener" target="_blank">Article</a>..</p> </d-article> <d-appendix> <d-footnote-list></d-footnote-list> <d-citation-list></d-citation-list> </d-appendix> <d-bibliography src="/al-folio/assets/bibliography/"></d-bibliography> <d-article> <h2 class="text-3xl font-semibold mb-4 mt-12">Enjoy Reading This Article?</h2> <p class="mb-2">Here are some more articles you might like to read next:</p> <li class="my-2"> <a class="text-pink-700 underline font-semibold hover:text-pink-800" href="/al-folio/posts/2025/06/blog-post-54/">Tabulating 6-DOF Motion Kinematics in OpenFOAM using Python</a> </li> <li class="my-2"> <a class="text-pink-700 underline font-semibold hover:text-pink-800" href="/al-folio/posts/2025/06/blog-post-53/">Setting Up Overset Mesh Cases in OpenFOAM Made Easy</a> </li> <li class="my-2"> <a class="text-pink-700 underline font-semibold hover:text-pink-800" href="/al-folio/posts/2025/06/blog-post-52/">An Introduction to Overset Mesh in OpenFOAM</a> </li> <li class="my-2"> <a class="text-pink-700 underline font-semibold hover:text-pink-800" href="/al-folio/posts/2025/05/blog-post-51/">Python Tools for Analyzing and Visualizing Mesh Motion Simulations</a> </li> <li class="my-2"> <a class="text-pink-700 underline font-semibold hover:text-pink-800" href="/al-folio/posts/2025/03/blog-post-50/">Simulating Pure Pitching and Heaving Motions in OpenFOAM</a> </li> <br> <br> </d-article> </div> <footer class="fixed-bottom" role="contentinfo"> <div class="container mt-0"> © Copyright 2025 Shubham Goswami, PhD. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a>. Photos from <a href="https://unsplash.com" target="_blank" rel="external nofollow noopener">Unsplash</a>. </div> </footer> <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> <script src="/al-folio/assets/js/bootstrap.bundle.min.js"></script> <script src="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/js/mdb.min.js" integrity="sha256-NdbiivsvWt7VYCt6hYNT3h/th9vSTL4EDWeGs5SN3DA=" crossorigin="anonymous"></script> <script src="/al-folio/assets/js/distillpub/overrides.js"></script> <script defer src="https://cdn.jsdelivr.net/npm/mermaid@10.7.0/dist/mermaid.min.js" integrity="sha256-TtLOdUA8mstPoO6sGvHIGx2ceXrrX4KgIItO06XOn8A=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/d3@7.8.5/dist/d3.min.js" integrity="sha256-1rA678n2xEx7x4cTZ5x4wpUCj6kUMZEZ5cxLSVSFWxw=" crossorigin="anonymous"></script> <script defer src="/al-folio/assets/js/mermaid-setup.js?38ca0a0126f7328d2d9a46bad640931f" type="text/javascript"></script> <script src="https://cdn.jsdelivr.net/npm/diff2html@3.4.47/bundles/js/diff2html-ui.min.js" integrity="sha256-eU2TVHX633T1o/bTQp6iIJByYJEtZThhF9bKz/DcbbY=" crossorigin="anonymous"></script> <script defer src="/al-folio/assets/js/diff2html-setup.js?80a6e52ce727518bbd3aed2bb6ba5601" type="text/javascript"></script> <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.js" integrity="sha256-MgH13bFTTNqsnuEoqNPBLDaqxjGH+lCpqrukmXc8Ppg=" crossorigin="anonymous"></script> <script defer src="/al-folio/assets/js/leaflet-setup.js?b6313931e203b924523e2d8b75fe8874" type="text/javascript"></script> <script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" integrity="sha256-0q+JdOlScWOHcunpUk21uab1jW7C1deBQARHtKMcaB4=" crossorigin="anonymous"></script> <script defer src="/al-folio/assets/js/chartjs-setup.js?183c5859923724fb1cb3c67593848e71" type="text/javascript"></script> <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js" integrity="sha256-QvgynZibb2U53SsVu98NggJXYqwRL7tg3FeyfXvPOUY=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/theme/dark-fresh-cut.js" integrity="sha256-sm6Ui9w41++ZCWmIWDLC18a6ki72FQpWDiYTDxEPXwU=" crossorigin="anonymous"></script> <script defer src="/al-folio/assets/js/echarts-setup.js?738178999630746a8d0cfc261fc47c2c" type="text/javascript"></script> <script defer src="https://cdn.jsdelivr.net/npm/vega@5.27.0/build/vega.min.js" integrity="sha256-Yot/cfgMMMpFwkp/5azR20Tfkt24PFqQ6IQS+80HIZs=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/vega-lite@5.16.3/build/vega-lite.min.js" integrity="sha256-TvBvIS5jUN4BSy009usRjNzjI1qRrHPYv7xVLJyjUyw=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/vega-embed@6.24.0/build/vega-embed.min.js" integrity="sha256-FPCJ9JYCC9AZSpvC/t/wHBX7ybueZhIqOMjpWqfl3DU=" crossorigin="anonymous"></script> <script defer src="/al-folio/assets/js/vega-setup.js?7c7bee055efe9312afc861b128fe5f36" type="text/javascript"></script> <script defer src="https://tikzjax.com/v1/tikzjax.js" integrity="sha256-+1qyucCXRZJrCg3lm3KxRt/7WXaYhBid4/1XJRHGB1E=" crossorigin="anonymous"></script> <script src="/al-folio/assets/js/typograms.js?062e75bede72543443762dc3fe36c7a5"></script> <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script> <script defer src="/al-folio/assets/js/zoom.js?85ddb88934d28b74e78031fd54cf8308"></script> <script src="/al-folio/assets/js/no_defer.js?2781658a0a2b13ed609542042a859126"></script> <script defer src="/al-folio/assets/js/common.js?e0514a05c5c95ac1a93a8dfd5249b92e"></script> <script defer src="/al-folio/assets/js/copy_code.js?c8a01c11a92744d44b093fc3bda915df" type="text/javascript"></script> <script defer src="/al-folio/assets/js/jupyter_new_tab.js?d9f17b6adc2311cbabd747f4538bb15f"></script> <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script> <script src="/al-folio/assets/js/mathjax-setup.js?a5bb4e6a542c546dd929b24b8b236dfd"></script> <script defer src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6" crossorigin="anonymous"></script> <script defer src="/al-folio/assets/js/progress-bar.js?2f30e0e6801ea8f5036fa66e1ab0a71a" type="text/javascript"></script> <script src="/al-folio/assets/js/vanilla-back-to-top.min.js?f40d453793ff4f64e238e420181a1d17"></script> <script>
+    addBackToTop();
+  </script> <script type="module" src="/al-folio/assets/js/search/ninja-keys.min.js?a3446f084dcaecc5f75aa1757d087dcf"></script> <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching"></ninja-keys> <script src="/al-folio/assets/js/search-setup.js?6c304f7b1992d4b60f7a07956e52f04a"></script> <script src="/al-folio/assets/js/search-data.js"></script> <script src="/al-folio/assets/js/shortcut-key.js?6f508d74becd347268a7f822bca7309d"></script> </body> </html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html> <html> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title> The OpenFOAM Game Changer: Why You Need MPI (and How to Use It) | Shubham Goswami, PhD </title> <meta name="author" content="Shubham Goswami, PhD"> <meta name="description" content="Personal and professional website of Shubham Goswami, PhD. "> <link rel="stylesheet" href="/al-folio/assets/css/bootstrap.min.css?a4b3f509e79c54a512b890d73235ef04"> <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/css/mdb.min.css" integrity="sha256-jpjYvU3G3N6nrrBwXJoVEYI/0zw8htfFnhT9ljN3JJw=" crossorigin="anonymous"> <link defer rel="stylesheet" href="/al-folio/assets/css/academicons.min.css?f0b7046b84e425c55f3463ac249818f5"> <link defer rel="stylesheet" href="/al-folio/assets/css/scholar-icons.css?62b2ac103a88034e6882a5be5f3e2772"> <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap"> <link defer rel="stylesheet" href="/al-folio/assets/css/jekyll-pygments-themes-github.css?591dab5a4e56573bf4ef7fd332894c99" media="" id="highlight_theme_light"> <link rel="shortcut icon" href="data:image/svg+xml,&lt;svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22&gt;&lt;text%20y=%22.9em%22%20font-size=%2290%22&gt;%E2%9A%9B%EF%B8%8F&lt;/text&gt;&lt;/svg&gt;"> <link rel="stylesheet" href="/al-folio/assets/css/main.css?d41d8cd98f00b204e9800998ecf8427e"> <link rel="canonical" href="https://shubhamdgoswami.github.io/al-folio/posts/2024/02/blog-post-7/"> <script src="/al-folio/assets/js/theme.js?a81d82887dd692e91686b43de4542f18"></script> <link defer rel="stylesheet" href="/al-folio/assets/css/jekyll-pygments-themes-native.css?5847e5ed4a4568527aa6cfab446049ca" media="none" id="highlight_theme_dark"> <script>
+    initTheme();
+  </script> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.css" integrity="sha256-q9ba7o845pMPFU+zcAll8rv+gC+fSovKsOoNQ6cynuQ=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github.min.css" integrity="sha256-Oppd74ucMR5a5Dq96FxjEzGF7tTw2fZ/6ksAqDCM8GY=" crossorigin="anonymous" media="screen and (prefers-color-scheme: light)"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github-dark.min.css" integrity="sha256-nyCNAiECsdDHrr/s2OQsp5l9XeY2ZJ0rMepjCT2AkBk=" crossorigin="anonymous" media="screen and (prefers-color-scheme: dark)"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/diff2html@3.4.47/bundles/css/diff2html.min.css" integrity="sha256-IMBK4VNZp0ivwefSn51bswdsrhk0HoMTLc2GqFHFBXg=" crossorigin="anonymous"> <link defer rel="stylesheet" type="text/css" href="https://tikzjax.com/v1/fonts.css"> <script src="/al-folio/assets/js/distillpub/template.v2.js"></script> <script src="/al-folio/assets/js/distillpub/transforms.v2.js"></script> <style type="text/css">.fake-img{background:#bbb;border:1px solid rgba(0,0,0,0.1);box-shadow:0 0 4px rgba(0,0,0,0.1);margin-bottom:12px}.fake-img p{font-family:monospace;color:white;text-align:left;margin:12px 0;text-align:center;font-size:16px}</style> </head> <body> <d-front-matter> <script async type="text/json">
+      {
+            "title": "The OpenFOAM Game Changer: Why You Need MPI (and How to Use It)",
+            "description": "",
+            "published": "February 20, 2024",
+            "authors": [
+              
+            ],
+            "katex": {
+              "delimiters": [
+                {
+                  "left": "$",
+                  "right": "$",
+                  "display": false
+                },
+                {
+                  "left": "$$",
+                  "right": "$$",
+                  "display": true
+                }
+              ]
+            }
+          }
+    </script> </d-front-matter> <header> <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation"> <div class="container"> <a class="navbar-brand title font-weight-lighter" href="/al-folio/"> <span class="font-weight-bold">Shubham</span> Goswami, PhD </a> <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar top-bar"></span> <span class="icon-bar middle-bar"></span> <span class="icon-bar bottom-bar"></span> </button> <div class="collapse navbar-collapse text-right" id="navbarNav"> <ul class="navbar-nav ml-auto flex-nowrap"> <li class="nav-item "> <a class="nav-link" href="/al-folio/">About </a> </li> <li class="nav-item "> <a class="nav-link" href="/al-folio/cv/">CV </a> </li> <li class="nav-item "> <a class="nav-link" href="/al-folio/blog/">Guides </a> </li> <li class="nav-item "> <a class="nav-link" href="/al-folio/publications/">Publications </a> </li> <li class="nav-item "> <a class="nav-link" href="/al-folio/teaching/">Teaching </a> </li> <li class="nav-item"> <button id="search-toggle" title="Search" onclick="openSearchModal()"> <span class="nav-link">ctrl k <i class="ti ti-search"></i></span> </button> </li> <li class="toggle-container"> <button id="light-toggle" title="Change theme"> <i class="ti ti-sun-moon" id="light-toggle-system"></i> <i class="ti ti-moon-filled" id="light-toggle-dark"></i> <i class="ti ti-sun-filled" id="light-toggle-light"></i> </button> </li> </ul> </div> </div> </nav> <progress id="progress" value="0"> <div class="progress-container"> <span class="progress-bar"></span> </div> </progress> </header> <div class="post distill"> <d-title> <h1>The OpenFOAM Game Changer: Why You Need MPI (and How to Use It)</h1> <p></p> </d-title> <d-article> <d-contents> <nav class="l-text figcaption"> <h3>Contents</h3> </nav> </d-contents> <p>Tired of slow OpenFOAM simulations?</p> <p>Dive into the world of parallel computing with MPI and accelerate your cases to blazing speeds. This guide will equip you with the knowledge and tools to unlock the full potential of your multi-core machine or cluster, significantly reducing simulation times and boosting your research productivity. Get ready to witness the magic of parallel processing in OpenFOAM!</p> <figure> <img src="https://goswami-13.github.io/images/Processors_Image_1.jpeg" width="80%"> </figure> <p>It’s surprising how many OpenFOAM newcomers are unaware of or ill-equipped to run simulations in parallel. This common frustration often arises when introducing OpenFOAM to fresh graduate students. Frequently asked questions like “Why is my simulation slow?” can often be answered with a simple “because you are running in Serial!” Hence, I’ve decided to address this gap by crafting an article dedicated to parallel processing in OpenFOAM. Throughout this article, I’ll utilize the flow around a circular cylinder case, downloadable from <a href="https://github.com/goswami-13/OpenFOAM-cases/tree/main/4_Tutorials" rel="external nofollow noopener" target="_blank">here</a>, labeled as <code class="language-plaintext highlighter-rouge">CircularCylinder_Laminar</code>.</p> <p>Let’s start by setting the stage. Simulating intricate real-world scenarios in OpenFOAM can be computationally demanding. Considering that most research-related simulations in OpenFOAM tackle real-world applications to some degree, learning how to leverage parallel processing becomes crucial. I’ve covered aspects of parallel processing in a previous article on setting up PETSc in OpenFOAM (Link <a href="https://medium.com/@goswami13/setting-up-petsc-in-openfoam-a635713f9428" rel="external nofollow noopener" target="_blank">here</a>). Ideally, OpenFOAM simulations in research utilize High-Performance Computing (HPC) clusters, or simply put, Supercomputers. HPC clusters consist of a vast network of interconnected servers or computers known as ‘Nodes’, each equipped with components like CPU cores, memory (RAM), and disk space. While these clusters boast impressive computing power with tens of thousands of cores at your disposal, not everyone has access to them. Let’s consider reality. Not everyone has access to an HPC cluster. Sure, most universities have access to a HPC clusters and they freely (in most cases) provide them to researchers for use. For example, researchers in Canada have accees to <em>Digital Research Alliance of Canada</em> (formerly Compute Canada) clusters. However, access to these clusters is typically regulated by a powerful job scheduler called ‘SLURM’, ensuring fair usage among all users. In practical terms, running simulations on an HPC cluster involves preparing your case and submitting a job script to SLURM, which allocates resources and manages the execution of your simulation on compute nodes. While HPC clusters are ideal for large parallel simulations, your personal computer can serve as a valuable testing ground for smaller-scale simulations. Your PC essentially functions as a compute node, equipped with a certain number of cores, which we’ll leverage to run parallel simulations. As such, I recommend utilizing an HPC cluster for large-scale parallel simulations, reserving your personal PC for setting up or testing smaller-scale simulations.</p> <h2 id="how-many-cores">How Many Cores?</h2> <p>First things first, let’s determine the number of cores your PC has.</p> <ul> <li> <p>If you’re using macOS like me, you can check the number of cores using the terminal. Open the terminal and type in <code class="language-plaintext highlighter-rouge">sysctl hw.physicalcpu hw.logicalcpu</code>. This command will provide the following output:</p> <div class="language-bash highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>  hw.physicalcpu: 2
+  hw.logicalcpu: 4
+</code></pre></div> </div> </li> <li>In Windows, I typically utilize the Windows Subsystem for Linux (WSL). Open your WSL terminal and type <code class="language-plaintext highlighter-rouge">nproc</code>. You should see something like <code class="language-plaintext highlighter-rouge">12</code>. This same command should work in Ubuntu as well!</li> <li> <p>Alternatively, for Debian-based distributions like Ubuntu, you can use the <code class="language-plaintext highlighter-rouge">lscpu</code> command. Running this command should yield the following output:</p> <div class="language-bash highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>  Architecture:        x86_64
+  CPU op-mode<span class="o">(</span>s<span class="o">)</span>:      32-bit, 64-bit
+  Byte Order:          Little Endian
+  Address sizes:       43 bits physical, 48 bits virtual
+  CPU<span class="o">(</span>s<span class="o">)</span>:              64
+  On-line CPU<span class="o">(</span>s<span class="o">)</span> list: 0-63
+  Thread<span class="o">(</span>s<span class="o">)</span> per core:  1
+  Core<span class="o">(</span>s<span class="o">)</span> per socket:  32
+  Socket<span class="o">(</span>s<span class="o">)</span>:           2
+  NUMA node<span class="o">(</span>s<span class="o">)</span>:        8
+  Vendor ID:           AuthenticAMD
+  CPU family:          23
+  Model:               49
+  Model name:          AMD EPYC 7532 32-Core Processor
+  Stepping:            0
+  CPU MHz:             2395.475
+  BogoMIPS:            4790.95
+  Virtualization:      AMD-V
+  L1d cache:           32K
+  L1i cache:           32K
+  L2 cache:            512K
+  L3 cache:            16384K
+  NUMA node0 CPU<span class="o">(</span>s<span class="o">)</span>:   0-7
+  NUMA node1 CPU<span class="o">(</span>s<span class="o">)</span>:   8-15
+  NUMA node2 CPU<span class="o">(</span>s<span class="o">)</span>:   16-23
+  NUMA node3 CPU<span class="o">(</span>s<span class="o">)</span>:   24-31
+  NUMA node4 CPU<span class="o">(</span>s<span class="o">)</span>:   32-39
+  NUMA node5 CPU<span class="o">(</span>s<span class="o">)</span>:   40-47
+  NUMA node6 CPU<span class="o">(</span>s<span class="o">)</span>:   48-55
+  NUMA node7 CPU<span class="o">(</span>s<span class="o">)</span>:   56-63
+  ...
+</code></pre></div> </div> </li> </ul> <p><strong>Note</strong>: To fully leverage your hardware’s capabilities, prioritize utilizing the maximum number of physical cores rather than virtual or logical cores. OpenFOAM does not optimize for logical cores or hyper-threading. Utilizing the maximum number of virtual cores may result in slower performance compared to utilizing the maximum number of physical cores. This principle also applies when running simulations on an HPC cluster.</p> <h2 id="why-use-parallel-computing">Why Use Parallel Computing?</h2> <p>A straightforward answer to this lies in scalability and performance:</p> <ol> <li> <strong>Scalability</strong>: With parallel processing, you can tackle larger problems on a simpler framework. While a single processor can only handle one task at a time, multiple processors can handle multiple tasks simultaneously.</li> <li> <strong>Performance</strong>: Parallel processing enhances productivity and accelerates computation speed, resulting in faster execution (speed-up).</li> </ol> <h2 id="openfoam-parallelization">OpenFOAM Parallelization</h2> <p>In OpenFOAM, parallel computing is achieved through domain decomposition. This process involves breaking down the geometry and associated fields (such as U, p, k, epsilon, etc.) into segments and allocating them to separate processors for computation. The parallel computation process typically includes the following steps:</p> <ol> <li>Domain Decomposition: Breaking down the domain into smaller segments.</li> <li>Job Distribution: Distributing the computational tasks among the available processors.</li> <li>Parallel Simulation Execution: Running the simulation concurrently on multiple processors.</li> <li>Result Reconstruction: Reassembling or consolidating the decomposed simulation data after completion.</li> </ol> <p>In the following sections, I’ll delve into each of these steps in detail.</p> <h2 id="decompose-the-domain">Decompose The Domain</h2> <p>The mesh and fields of your simulation are decomposed or distributed among processors using the <code class="language-plaintext highlighter-rouge">decomposePar</code> utility in OpenFOAM. This utility relies on parameters specified in a file called <code class="language-plaintext highlighter-rouge">decomposeParDict</code>, which <strong>must</strong> be present in the <code class="language-plaintext highlighter-rouge">system</code> directory of your simulation. Below are the dictionary entries from the <code class="language-plaintext highlighter-rouge">decomposeParDict</code> file in my example simulation:</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/<span class="k">*</span><span class="nt">--------------------------------</span><span class="k">*</span>- C++ -<span class="k">*</span><span class="nt">----------------------------------</span><span class="k">*</span><span class="se">\</span>
+| <span class="o">=========</span>                 |                                                 |
+| <span class="se">\\</span>      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  <span class="se">\\</span>    /   O peration     | Version:  v1812                                 |
+|   <span class="se">\\</span>  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    <span class="se">\\</span>/     M anipulation  |                                                 |
+<span class="se">\*</span><span class="nt">---------------------------------------------------------------------------</span><span class="k">*</span>/
+FoamFile
+<span class="o">{</span>
+    version     2.0<span class="p">;</span>
+    format      ascii<span class="p">;</span>
+    class       dictionary<span class="p">;</span>
+    object      decomposeParDict<span class="p">;</span>
+<span class="o">}</span>
+// <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> //
+
+numberOfSubdomains  24<span class="p">;</span>
+method          scotch<span class="p">;</span>
+
+//method          hierarchical<span class="p">;</span>
+
+hierarchicalCoeffs
+<span class="o">{</span>
+    n           <span class="o">(</span>12 2 1<span class="o">)</span><span class="p">;</span>
+    delta       0.001<span class="p">;</span> // <span class="nv">default</span><span class="o">=</span>0.001
+    order       xyz<span class="p">;</span>   // <span class="nv">default</span><span class="o">=</span>xzy
+<span class="o">}</span>
+// <span class="k">*************************************************************************</span> //
+</code></pre></div></div> <p>Here, we specify two crucial aspects: the number of subdivisions and the decomposition method. The <code class="language-plaintext highlighter-rouge">numberOfSubdomains</code> parameter determines how many processors the case should be divided into. To optimize simulation performance, it’s recommended to use the maximum number of physical cores available on your machine. The number next to this entry represents the maximum number of physical cores in my machine.</p> <p>The primary objective of domain decomposition is to minimize inter-processor communication and maximize simulation performance. This is where the choice of decomposition method comes into play. OpenFOAM offers four main decomposition methods:</p> <ol> <li> <strong>simple</strong>: Divides the domain into pieces based on direction, such as nx pieces in the x-direction, ny in y, and nz in z.</li> <li> <strong>hierarchical</strong>: Similar to simple, but allows the user to specify the order of directional splits. For instance, a decomposition of $12\times 2\times 1$ splits the domain first in the x-direction, then y, and finally z.</li> <li> <strong>scotch</strong>: Utilizes the Scotch decomposition algorithm, minimizing the number of processor boundaries without requiring geometric input from the user. It also offers options to control decomposition strategy and weighting for machines with differing processor performance.</li> <li> <strong>manual</strong>: Allows direct user specification of cell allocation to processors.</li> </ol> <p>I recommend utilizing the <code class="language-plaintext highlighter-rouge">scotch</code> method. This method requires only the number of cores to use and aims to minimize processor boundaries while distributing mesh and fields.</p> <p>To decompose the mesh and fields, use the <code class="language-plaintext highlighter-rouge">decomposePar</code> command. This utility divides the mesh and fields into the specified number of processors using the chosen method. Upon completion, it creates a set of subdirectories in the case directory, named <code class="language-plaintext highlighter-rouge">processorN</code> where N represents the processor number (0,1,2,..,N). Each directory contains a time directory with decomposed fields and a <code class="language-plaintext highlighter-rouge">constant/polyMesh</code> directory with the decomposed mesh. In my example case, the output of <code class="language-plaintext highlighter-rouge">decomposePar</code> will be as follows:</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Decomposing mesh
+
+Create mesh
+
+Calculating distribution of cells
+Decomposition method scotch <span class="o">[</span>24] <span class="o">(</span>region region0<span class="o">)</span>
+
+Finished decomposition <span class="k">in </span>6.78 s
+
+Calculating original mesh data
+
+Distributing cells to processors
+
+Distributing faces to processors
+
+Distributing points to processors
+
+Constructing processor meshes
+
+Processor 0
+    Number of cells <span class="o">=</span> 3028
+    Number of points <span class="o">=</span> 3813
+    Number of faces shared with processor 1 <span class="o">=</span> 60
+    Number of faces shared with processor 2 <span class="o">=</span> 88
+    Number of faces shared with processor 5 <span class="o">=</span> 176
+    Number of faces shared with processor 22 <span class="o">=</span> 175
+    Number of processor patches <span class="o">=</span> 4
+    Number of processor faces <span class="o">=</span> 499
+    Number of boundary faces <span class="o">=</span> 965
+
+Processor 1
+    Number of cells <span class="o">=</span> 3026
+    Number of points <span class="o">=</span> 3858
+    Number of faces shared with processor 0 <span class="o">=</span> 60
+    Number of faces shared with processor 2 <span class="o">=</span> 216
+    Number of faces shared with processor 6 <span class="o">=</span> 96
+    Number of faces shared with processor 16 <span class="o">=</span> 112
+    Number of faces shared with processor 21 <span class="o">=</span> 83
+    Number of faces shared with processor 22 <span class="o">=</span> 166
+    Number of processor patches <span class="o">=</span> 6
+    Number of processor faces <span class="o">=</span> 733
+    Number of boundary faces <span class="o">=</span> 815
+
+Processor 2
+    Number of cells <span class="o">=</span> 3000
+    Number of points <span class="o">=</span> 3789
+    Number of faces shared with processor 0 <span class="o">=</span> 88
+    Number of faces shared with processor 1 <span class="o">=</span> 216
+    Number of faces shared with processor 3 <span class="o">=</span> 144
+    Number of faces shared with processor 5 <span class="o">=</span> 128
+    Number of faces shared with processor 6 <span class="o">=</span> 64
+    Number of processor patches <span class="o">=</span> 5
+    Number of processor faces <span class="o">=</span> 640
+    Number of boundary faces <span class="o">=</span> 830
+
+Processor 3
+    Number of cells <span class="o">=</span> 3016
+    Number of points <span class="o">=</span> 3807
+    Number of faces shared with processor 2 <span class="o">=</span> 144
+    Number of faces shared with processor 4 <span class="o">=</span> 128
+    Number of faces shared with processor 5 <span class="o">=</span> 144
+    Number of faces shared with processor 6 <span class="o">=</span> 8
+    Number of faces shared with processor 9 <span class="o">=</span> 208
+    Number of processor patches <span class="o">=</span> 5
+    Number of processor faces <span class="o">=</span> 632
+    Number of boundary faces <span class="o">=</span> 842
+
+...
+</code></pre></div></div> <p>The decomposed simulation directory will appear as follows:</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0           processor1   processor12  processor15  processor18  processor20  processor23  processor5  processor8
+constant    processor10  processor13  processor16  processor19  processor21  processor3   processor6  processor9
+processor0  processor11  processor14  processor17  processor2   processor22  processor4   processor7  system
+</code></pre></div></div> <p>Each processor directory will contain the fields and mesh,</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>processor0
+├── 0
+│   ├── p.gz
+│   └── U.gz
+└── constant
+    └── polyMesh
+        ├── boundary
+        ├── boundaryProcAddressing.gz
+        ├── cellProcAddressing.gz
+        ├── cellZones.gz
+        ├── faceProcAddressing.gz
+        ├── faces.gz
+        ├── faceZones.gz
+        ├── neighbour.gz
+        ├── owner.gz
+        ├── pointProcAddressing.gz
+        └── points.gz
+</code></pre></div></div> <h2 id="running-a-parallel-simulation">Running a Parallel Simulation</h2> <p>To run a decomposed OpenFOAM case in parallel, we utilize openMPI, a widely used communication protocol for distributed parallel computing. Running openMPI on a local multiprocessor machine is straightforward with the following command:</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mpirun <span class="nt">-np</span> &lt;N_Processors&gt; &lt;Solver or Application&gt; <span class="nt">-parallel</span> | <span class="nb">tee </span>log.&lt;Solver_Name&gt;
+</code></pre></div></div> <p>In this command:</p> <ul> <li> <code class="language-plaintext highlighter-rouge">&lt;N_Processors&gt;</code> specifies the number of cores being utilized.</li> <li> <code class="language-plaintext highlighter-rouge">&lt;Solver or Application&gt;</code> refers to the solver or application for the simulation.</li> <li> <code class="language-plaintext highlighter-rouge">... | tee log.&lt;Solver_Name&gt;</code> ensures that the command output is written into a file named <code class="language-plaintext highlighter-rouge">log.&lt;Solver_Name&gt;</code>, which is considered good practice.</li> </ul> <p>In my example simulations of flow around a cylinder, I use 24 cores and run the simulation with the pimpleFoam solver. Therefore, the command for my case is:</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mpirun <span class="nt">-np</span> 24 pimpleFoam <span class="nt">-parallel</span> | <span class="nb">tee </span>log.pimpleFoam
+</code></pre></div></div> <h2 id="post-processing-parallel-simulation">Post Processing Parallel Simulation</h2> <p>Post-processing a parallel run case in OpenFOAM typically involves reconstructing the mesh and field data to recreate the complete domain and fields, which can then be post-processed as usual. I recommend this method, especially for users who prefer post-processing with Tecplot, as it can become cumbersome with a large number of time directories in parallel. Alternatively, you can directly use ParaView with the <code class="language-plaintext highlighter-rouge">Decomposed case</code> case-type for visualization. Additionally, for more fancy visualizations, you can post-process each segment of the decomposed domain individually.</p> <p>To reconstruct the domain, simply execute:</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>reconstructPar
+</code></pre></div></div> <p>Executing <code class="language-plaintext highlighter-rouge">reconstructPar</code> without additional options will process all stored time directories. Specific times can be processed using options such as:</p> <ul> <li> <code class="language-plaintext highlighter-rouge">reconstructPar -latestTime</code>: to process the latest time only</li> <li> <code class="language-plaintext highlighter-rouge">reconstructPar -Time N</code>: to process time N</li> <li> <code class="language-plaintext highlighter-rouge">reconstructPar -newTimes</code>: to process any time directories that have not been processed previously</li> </ul> <p>For the fancy visualization, manually create the file <code class="language-plaintext highlighter-rouge">processorN.OpenFOAM</code> (where N is the processor number) in each processor folder. Once all <code class="language-plaintext highlighter-rouge">processorN.OpenFOAM</code> files are created, launch ParaView and load each file. This allows visualization of the decomposed domain but provides no physical inputs into the flow.</p> <p>In conclusion, parallel computing using MPI offers a powerful tool for accelerating OpenFOAM simulations, enabling users to tackle larger and more complex problems with improved efficiency. By leveraging domain decomposition and openMPI, users can fully exploit the computational resources available to them, whether on a personal machine or a high-performance computing cluster. As you embark on your parallel computing journey with OpenFOAM, remember to optimize your simulations for performance, explore post-processing techniques tailored to your needs, and never hesitate to delve deeper into the world of parallel computing for even greater efficiency gains. Happy computing!</p> </d-article> <d-appendix> <d-footnote-list></d-footnote-list> <d-citation-list></d-citation-list> </d-appendix> <d-bibliography src="/al-folio/assets/bibliography/"></d-bibliography> <d-article> <h2 class="text-3xl font-semibold mb-4 mt-12">Enjoy Reading This Article?</h2> <p class="mb-2">Here are some more articles you might like to read next:</p> <li class="my-2"> <a class="text-pink-700 underline font-semibold hover:text-pink-800" href="/al-folio/posts/2025/06/blog-post-54/">Tabulating 6-DOF Motion Kinematics in OpenFOAM using Python</a> </li> <li class="my-2"> <a class="text-pink-700 underline font-semibold hover:text-pink-800" href="/al-folio/posts/2025/06/blog-post-53/">Setting Up Overset Mesh Cases in OpenFOAM Made Easy</a> </li> <li class="my-2"> <a class="text-pink-700 underline font-semibold hover:text-pink-800" href="/al-folio/posts/2025/06/blog-post-52/">An Introduction to Overset Mesh in OpenFOAM</a> </li> <li class="my-2"> <a class="text-pink-700 underline font-semibold hover:text-pink-800" href="/al-folio/posts/2025/05/blog-post-51/">Python Tools for Analyzing and Visualizing Mesh Motion Simulations</a> </li> <li class="my-2"> <a class="text-pink-700 underline font-semibold hover:text-pink-800" href="/al-folio/posts/2025/03/blog-post-50/">Simulating Pure Pitching and Heaving Motions in OpenFOAM</a> </li> <br> <br> </d-article> </div> <footer class="fixed-bottom" role="contentinfo"> <div class="container mt-0"> © Copyright 2025 Shubham Goswami, PhD. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a>. Photos from <a href="https://unsplash.com" target="_blank" rel="external nofollow noopener">Unsplash</a>. </div> </footer> <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> <script src="/al-folio/assets/js/bootstrap.bundle.min.js"></script> <script src="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/js/mdb.min.js" integrity="sha256-NdbiivsvWt7VYCt6hYNT3h/th9vSTL4EDWeGs5SN3DA=" crossorigin="anonymous"></script> <script src="/al-folio/assets/js/distillpub/overrides.js"></script> <script defer src="https://cdn.jsdelivr.net/npm/mermaid@10.7.0/dist/mermaid.min.js" integrity="sha256-TtLOdUA8mstPoO6sGvHIGx2ceXrrX4KgIItO06XOn8A=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/d3@7.8.5/dist/d3.min.js" integrity="sha256-1rA678n2xEx7x4cTZ5x4wpUCj6kUMZEZ5cxLSVSFWxw=" crossorigin="anonymous"></script> <script defer src="/al-folio/assets/js/mermaid-setup.js?38ca0a0126f7328d2d9a46bad640931f" type="text/javascript"></script> <script src="https://cdn.jsdelivr.net/npm/diff2html@3.4.47/bundles/js/diff2html-ui.min.js" integrity="sha256-eU2TVHX633T1o/bTQp6iIJByYJEtZThhF9bKz/DcbbY=" crossorigin="anonymous"></script> <script defer src="/al-folio/assets/js/diff2html-setup.js?80a6e52ce727518bbd3aed2bb6ba5601" type="text/javascript"></script> <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.js" integrity="sha256-MgH13bFTTNqsnuEoqNPBLDaqxjGH+lCpqrukmXc8Ppg=" crossorigin="anonymous"></script> <script defer src="/al-folio/assets/js/leaflet-setup.js?b6313931e203b924523e2d8b75fe8874" type="text/javascript"></script> <script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" integrity="sha256-0q+JdOlScWOHcunpUk21uab1jW7C1deBQARHtKMcaB4=" crossorigin="anonymous"></script> <script defer src="/al-folio/assets/js/chartjs-setup.js?183c5859923724fb1cb3c67593848e71" type="text/javascript"></script> <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js" integrity="sha256-QvgynZibb2U53SsVu98NggJXYqwRL7tg3FeyfXvPOUY=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/theme/dark-fresh-cut.js" integrity="sha256-sm6Ui9w41++ZCWmIWDLC18a6ki72FQpWDiYTDxEPXwU=" crossorigin="anonymous"></script> <script defer src="/al-folio/assets/js/echarts-setup.js?738178999630746a8d0cfc261fc47c2c" type="text/javascript"></script> <script defer src="https://cdn.jsdelivr.net/npm/vega@5.27.0/build/vega.min.js" integrity="sha256-Yot/cfgMMMpFwkp/5azR20Tfkt24PFqQ6IQS+80HIZs=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/vega-lite@5.16.3/build/vega-lite.min.js" integrity="sha256-TvBvIS5jUN4BSy009usRjNzjI1qRrHPYv7xVLJyjUyw=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/vega-embed@6.24.0/build/vega-embed.min.js" integrity="sha256-FPCJ9JYCC9AZSpvC/t/wHBX7ybueZhIqOMjpWqfl3DU=" crossorigin="anonymous"></script> <script defer src="/al-folio/assets/js/vega-setup.js?7c7bee055efe9312afc861b128fe5f36" type="text/javascript"></script> <script defer src="https://tikzjax.com/v1/tikzjax.js" integrity="sha256-+1qyucCXRZJrCg3lm3KxRt/7WXaYhBid4/1XJRHGB1E=" crossorigin="anonymous"></script> <script src="/al-folio/assets/js/typograms.js?062e75bede72543443762dc3fe36c7a5"></script> <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script> <script defer src="/al-folio/assets/js/zoom.js?85ddb88934d28b74e78031fd54cf8308"></script> <script src="/al-folio/assets/js/no_defer.js?2781658a0a2b13ed609542042a859126"></script> <script defer src="/al-folio/assets/js/common.js?e0514a05c5c95ac1a93a8dfd5249b92e"></script> <script defer src="/al-folio/assets/js/copy_code.js?c8a01c11a92744d44b093fc3bda915df" type="text/javascript"></script> <script defer src="/al-folio/assets/js/jupyter_new_tab.js?d9f17b6adc2311cbabd747f4538bb15f"></script> <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script> <script src="/al-folio/assets/js/mathjax-setup.js?a5bb4e6a542c546dd929b24b8b236dfd"></script> <script defer src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6" crossorigin="anonymous"></script> <script defer src="/al-folio/assets/js/progress-bar.js?2f30e0e6801ea8f5036fa66e1ab0a71a" type="text/javascript"></script> <script src="/al-folio/assets/js/vanilla-back-to-top.min.js?f40d453793ff4f64e238e420181a1d17"></script> <script>
+    addBackToTop();
+  </script> <script type="module" src="/al-folio/assets/js/search/ninja-keys.min.js?a3446f084dcaecc5f75aa1757d087dcf"></script> <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching"></ninja-keys> <script src="/al-folio/assets/js/search-setup.js?6c304f7b1992d4b60f7a07956e52f04a"></script> <script src="/al-folio/assets/js/search-data.js"></script> <script src="/al-folio/assets/js/shortcut-key.js?6f508d74becd347268a7f822bca7309d"></script> </body> </html>
