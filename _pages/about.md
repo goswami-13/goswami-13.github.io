@@ -30,7 +30,7 @@ Put your address / P.O. box / other info right below your picture. You can also 
 
 Link to your social media connections, too. This theme is set up to use [Font Awesome icons](https://fontawesome.com/) and [Academicons](https://jpswalsh.github.io/academicons/), like the ones below. Add your Facebook, Twitter, LinkedIn, Google Scholar, or just disable all of them. -->
 
-I am a Postdoctoral Research Associate in the [Reacting Flow and Numerical Methods Group](https://rockettroopers.wixsite.com/stormtrooper) at the University of Calgary. My research focuses on advancing simulation methodologies to address complex fluid flow problems, particularly in combustion, energy and sustainability applications. I am an expert in leveraging computational methods to drive innovation in fluid mechanics, tackling real-world engineering challenges, and contributing to the development of sustainable technologies.
+I am a Postdoctoral Research Associate in the [Reacting Flow and Numerical Methods Group](https://rockettroopers.wixsite.com/stormtrooper) at the University of Calgary. I also serve as a Sessional Instructor in the Schulich School of Engineering’s Department of Mechanical and Manufacturing Engineering, where I teach heat transfer. My research focuses on advancing simulation methodologies to address complex fluid flow problems, particularly in combustion, energy and sustainability applications. I am an expert in leveraging computational methods to drive innovation in fluid mechanics, tackling real-world engineering challenges, and contributing to the development of sustainable technologies.
 
 ## Current research projects 
 1. Quantification of Hydrogen flashback.
